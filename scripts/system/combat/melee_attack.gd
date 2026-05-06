@@ -1,14 +1,19 @@
 extends AttackBehavior
 class_name MeleeAttack
 
-var current_weapon_data: WeaponData
-var is_executing: bool = false
+var current_weapon_data: WeaponData # Lưu trữ WeaponData hiện tại để sử dụng trong hàm xử lý va chạm
+var is_executing: bool = false # Biến để kiểm tra xem đang trong quá trình thực hiện tấn công hay không
+var is_ready: bool = false # Biến để kiểm tra xem đã kết nối tín hiệu hit_enemy của hitbox hay chưa, tránh kết nối nhiều lần
 
-func _ready() -> void:
-	# Kết nối signal hit_enemy của hitbox đến hàm xử lý
-	var hitbox = GameManager.player.hitbox
+func ensure_ready(user):
+	if is_ready:
+		return
+	
+	var hitbox = user.hitbox
 	if not hitbox.hit_enemy.is_connected(_on_hitbox_hit_enemy):
-		hitbox.hit_enemy.connect(_on_hitbox_hit_enemy)
+		hitbox.hit_enemy.connect(_on_hitbox_hit_enemy) # Kết nối tín hiệu hit_enemy của hitbox với hàm xử lý _on_hitbox_hit_enemy
+
+	is_ready = true
 
 func execute(user, weapon_data):
 	if is_executing:
@@ -76,13 +81,11 @@ func execute(user, weapon_data):
 	# Cho phép tấn công tiếp theo
 	is_executing = false
 
-
 func handle_input(user, weapon_data, input_state):
-	_ready() # Đảm bảo kết nối signal được thiết lập
+	ensure_ready(user) # Đảm bảo đã kết nối tín hiệu hit_enemy của hitbox trước khi xử lý input
 
 	if input_state.just_pressed:
 		execute(user, weapon_data)
-
 
 # Hàm xử lý khi Hitbox va chạm với enemy
 func _on_hitbox_hit_enemy(enemy: Node2D) -> void:
