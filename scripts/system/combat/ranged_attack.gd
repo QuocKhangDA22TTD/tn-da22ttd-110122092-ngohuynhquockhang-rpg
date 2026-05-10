@@ -2,31 +2,46 @@ extends AttackBehavior
 class_name RangedAttack
 
 var current_weapon_data: WeaponData # Lưu trữ WeaponData hiện tại để sử dụng trong hàm xử lý va chạm
-var is_drawing: bool = false
+var is_drawing: bool = false # Biến để kiểm tra xem đang trong quá trình kéo cung hay không
+var current_projectile: Node = null # Tham chiếu đến projectile hiện tại đang được tạo ra, để cập nhật vị trí khi kéo và set hướng khi bắn
 
 
 func handle_input(user, weapon_data, input_state):
-	current_weapon_data = weapon_data
+	current_weapon_data = weapon_data # Cập nhật WeaponData hiện tại mỗi khi tấn công, để sử dụng trong hàm xử lý va chạm
 
-	ensure_weapon_visible(user) # Đảm bảo sprite vũ khí được hiển thị khi bắt đầu tấn công
-	update_bow_aim(user) # Cập nhật hướng bắn ngay khi bắt đầu
+	ensure_weapon_visible(user) # Đảm bảo sprite vũ khí hiển thị khi tấn công
+	update_bow_aim(user) # Cập nhật hướng bắn mỗi frame dựa trên vị trí chuột
 
 	if input_state.just_pressed:
 		is_drawing = true
-		bow_draw(user) # Phát animation kéo cung khi bắt đầu giữ nút
+		bow_draw(user) # Phát animation kéo cung
+		
+		# Tạo projectile và add vào scene tree ngay lập tức
+		var projectile_scene = preload("res://scenes/Projectile.tscn") # Thay bằng đường dẫn thực tế đến scene projectile của bạn
+		current_projectile = projectile_scene.instantiate() # Tạo instance của projectile
+		current_projectile.global_position = user.arrow_spawn_point.global_position # Đặt vị trí ban đầu của projectile tại điểm spawn trên người chơi
+		current_projectile.rotation = user.weapon_pivot.global_rotation # Đặt hướng ban đầu của projectile theo hướng vũ khí
+		ProjectileManager.add_child(current_projectile)# Add vào ProjectileManager trước khi set hướng và tốc độ để tránh lỗi nếu projectile có logic trong _ready hoặc _process phụ thuộc vào việc đã có trong scene tree hay chưa
 
 	elif input_state.pressed and is_drawing:
-		pass # Giữ nguyên animation bow_draw và cập nhật hướng bắn liên tục trong khi giữ nút
+		# Cập nhật vị trí projectile theo arrow_spawn_point khi đang kéo
+		if current_projectile:
+			current_projectile.global_position = user.arrow_spawn_point.global_position
+			current_projectile.rotation = user.weapon_pivot.global_rotation
 
 	elif input_state.just_released and is_drawing:
-		is_drawing = false # Khi thả nút, thực hiện bắn tên và quay về animation idle
+		is_drawing = false
 
-		# spawn arrow ở đây
+		# Khi buông chuột, set speed và direction để projectile bay
+		if current_projectile:
+			current_projectile.speed = 400.0
+			current_projectile.direction = Vector2.RIGHT.rotated(user.weapon_pivot.global_rotation)
+			current_projectile = null
 
-		bow_idle(user) # Quay về trạng thái idle sau khi bắn
+		bow_idle(user)
 
 	elif not is_drawing:
-		bow_idle(user) # Nếu không đang kéo cung, đảm bảo ở trạng thái idle
+		bow_idle(user)
 
 
 func bow_idle(user):
@@ -53,10 +68,8 @@ func update_bow_aim(user):
 	var direction: Vector2 = (mouse_pos - pivot_pos).normalized()
 	var angle: float = direction.angle()
 
-	# Xoay toàn bộ weapon pivot theo chuột
 	user.weapon_pivot.rotation = angle
 
-	# Xác định hướng animation
 	var attack_direction: String = get_attack_direction(angle)
 
 	match attack_direction:
