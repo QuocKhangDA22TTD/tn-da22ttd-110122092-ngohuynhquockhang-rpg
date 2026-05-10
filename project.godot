@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 InventoryManager="*uid://cmvbqkenwxyu8"
 GameManager="*uid://cesd0ok28a5t3"
+ProjectileManager="*uid://3de6m3f8obp0"
 
 [display]
 

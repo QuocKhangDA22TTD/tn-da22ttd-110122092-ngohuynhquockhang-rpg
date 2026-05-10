@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://3de6m3f8obp0"]
+
+[node name="ProjectileManager" type="Node2D" unique_id=1853368611]
+z_index = 1
