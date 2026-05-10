@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://rq42avbrfnh1"]
+
+[ext_resource type="Texture2D" uid="uid://cy0hjnyb4audv" path="res://assets/arrow.png" id="1_c8fcr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3m7n"]
+size = Vector2(15, 1)
+
+[node name="Projectile" type="Area2D" unique_id=392495149]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1427310688]
+rotation = 0.7853982
+texture = ExtResource("1_c8fcr")
+offset = Vector2(5, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=171068413]
+position = Vector2(7.5, 0)
+shape = SubResource("RectangleShape2D_q3m7n")
