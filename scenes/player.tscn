@@ -520,7 +520,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("ArrowSpawnPoint:position")
+tracks/7/path = NodePath("WeaponPivot/ArrowSpawnPoint:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -620,7 +620,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("ArrowSpawnPoint:position")
+tracks/7/path = NodePath("WeaponPivot/ArrowSpawnPoint:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1551,7 +1551,7 @@ shape = SubResource("RectangleShape2D_g2els")
 [node name="AnimationHitbox" type="AnimationPlayer" parent="WeaponVisual/WeaponPivot/Hitbox" unique_id=1904638348]
 libraries/ = SubResource("AnimationLibrary_i4ail")
 
-[node name="ArrowSpawnPoint" type="Marker2D" parent="WeaponVisual" unique_id=1897923049]
+[node name="ArrowSpawnPoint" type="Marker2D" parent="WeaponVisual/WeaponPivot" unique_id=1897923049]
 
 [node name="AnimationWeapon" type="AnimationPlayer" parent="WeaponVisual" unique_id=1054018421]
 libraries/ = SubResource("AnimationLibrary_f1ej7")
