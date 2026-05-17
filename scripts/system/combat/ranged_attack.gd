@@ -1,46 +1,66 @@
 extends AttackBehavior
 class_name RangedAttack
 
-var current_weapon_data: WeaponData # Lưu trữ WeaponData hiện tại để sử dụng trong hàm xử lý va chạm
-var is_drawing: bool = false # Biến để kiểm tra xem đang trong quá trình kéo cung hay không
-var current_projectile: Node = null # Tham chiếu đến projectile hiện tại đang được tạo ra, để cập nhật vị trí khi kéo và set hướng khi bắn
+var current_weapon_data: WeaponData
+var is_drawing: bool = false
+var is_releasing: bool = false
+var current_projectile: Node = null
+var is_ready: bool = false
+
+
+func ensure_ready(user):
+	if is_ready:
+		return
+
+	# Kết nối signal animation_finished một lần duy nhất
+	if not user.animation_weapon.animation_finished.is_connected(_on_weapon_animation_finished):
+		user.animation_weapon.animation_finished.connect(
+			_on_weapon_animation_finished.bind(user)
+		)
+
+	is_ready = true
 
 
 func handle_input(user, weapon_data, input_state):
-	current_weapon_data = weapon_data # Cập nhật WeaponData hiện tại mỗi khi tấn công, để sử dụng trong hàm xử lý va chạm
+	current_weapon_data = weapon_data
 
-	ensure_weapon_visible(user) # Đảm bảo sprite vũ khí hiển thị khi tấn công
-	update_bow_aim(user) # Cập nhật hướng bắn mỗi frame dựa trên vị trí chuột
+	ensure_weapon_visible(user)
+	ensure_ready(user)
+	update_bow_aim(user)
 
 	if input_state.just_pressed:
 		is_drawing = true
-		bow_draw(user) # Phát animation kéo cung
-		
-		# Tạo projectile và add vào scene tree ngay lập tức
-		var projectile_scene = preload("res://scenes/Projectile.tscn") # Thay bằng đường dẫn thực tế đến scene projectile của bạn
-		current_projectile = projectile_scene.instantiate() # Tạo instance của projectile
-		current_projectile.global_position = user.arrow_spawn_point.global_position # Đặt vị trí ban đầu của projectile tại điểm spawn trên người chơi
-		current_projectile.rotation = user.weapon_pivot.global_rotation # Đặt hướng ban đầu của projectile theo hướng vũ khí
-		ProjectileManager.add_child(current_projectile)# Add vào ProjectileManager trước khi set hướng và tốc độ để tránh lỗi nếu projectile có logic trong _ready hoặc _process phụ thuộc vào việc đã có trong scene tree hay chưa
+		is_releasing = false
+		bow_draw(user)
+
+		# Tạo projectile
+		var projectile_scene = preload("res://scenes/Projectile.tscn")
+		current_projectile = projectile_scene.instantiate()
+
+		current_projectile.global_position = user.arrow_spawn_point.global_position
+		current_projectile.rotation = user.weapon_pivot.global_rotation
+
+		ProjectileManager.add_child(current_projectile)
 
 	elif input_state.pressed and is_drawing:
-		# Cập nhật vị trí projectile theo arrow_spawn_point khi đang kéo
+		# Giữ projectile tại vị trí spawn khi đang kéo
 		if current_projectile:
 			current_projectile.global_position = user.arrow_spawn_point.global_position
 			current_projectile.rotation = user.weapon_pivot.global_rotation
 
 	elif input_state.just_released and is_drawing:
-		is_drawing = false
-
-		# Khi buông chuột, set speed và direction để projectile bay
+		# Bắn projectile
 		if current_projectile:
 			current_projectile.speed = 400.0
-			current_projectile.direction = Vector2.RIGHT.rotated(user.weapon_pivot.global_rotation)
+			current_projectile.direction = Vector2.RIGHT.rotated(
+				user.weapon_pivot.global_rotation
+			)
 			current_projectile = null
 
-		bow_idle(user)
+		bow_release(user)
+		is_releasing = true
 
-	elif not is_drawing:
+	elif not is_drawing and not is_releasing:
 		bow_idle(user)
 
 
@@ -50,6 +70,17 @@ func bow_idle(user):
 
 func bow_draw(user):
 	play_weapon_animation(user, "bow_draw")
+
+
+func bow_release(user):
+	play_weapon_animation(user, "bow_release")
+
+
+func apply_bow_shake(user):
+	var shake_amount: float = 0.25
+	var shake_x: float = randf_range(-shake_amount, shake_amount)
+	var shake_y: float = randf_range(-shake_amount, shake_amount)
+	user.weapon_pivot.global_position += Vector2(shake_x, shake_y)
 
 
 func ensure_weapon_visible(user):
@@ -93,12 +124,16 @@ func update_bow_aim(user):
 func get_attack_direction(angle: float) -> String:
 	if angle >= -PI / 4 and angle <= PI / 4:
 		return "right"
-
 	elif angle > PI / 4 and angle <= 3 * PI / 4:
 		return "down"
-
 	elif angle >= -3 * PI / 4 and angle < -PI / 4:
 		return "up"
-
 	else:
 		return "left"
+
+
+func _on_weapon_animation_finished(anim_name: StringName, user):
+	if anim_name == "bow_release":
+		bow_idle(user)
+		is_releasing = false
+		is_drawing = false
