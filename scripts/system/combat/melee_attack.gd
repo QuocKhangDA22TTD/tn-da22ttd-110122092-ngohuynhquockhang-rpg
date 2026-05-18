@@ -89,6 +89,11 @@ func handle_input(user, weapon_data, input_state):
 	elif not is_executing:
 		user.weapon_sprite_2d.visible = false # Ẩn vũ khí nếu không đang tấn công
 
+
+# Kiểm tra xem vũ khí có đang xử lý tấn công không
+func is_attacking() -> bool:
+	return is_executing
+
 # Hàm xử lý khi Hitbox va chạm với enemy
 func _on_hitbox_hit_enemy(enemy: Node2D) -> void:
 	enemy.take_damage(current_weapon_data.damage, GameManager.player) # Gọi hàm take_damage trên enemy với lượng damage và nguồn tấn công (source)

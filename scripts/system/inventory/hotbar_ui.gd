@@ -38,6 +38,11 @@ func update_hotbar():
 
 # Xử lý input cho hotbar (phím số 1-6 để chọn slot)
 func _input(event):
+	# Kiểm tra xem vũ khí hiện tại có đang tấn công không
+	if GameManager.player.current_weapon and GameManager.player.current_weapon.attack_behavior:
+		if GameManager.player.current_weapon.attack_behavior.is_attacking():
+			return  # Không cho phép chuyển đổi vũ khí khi đang tấn công
+	
 	# Phím số 1-6 để chọn slot
 	for i in range(hotbar_size):
 		if event.is_action_pressed("hotbar_" + str(i + 1)):

@@ -137,3 +137,8 @@ func _on_weapon_animation_finished(anim_name: StringName, user):
 		bow_idle(user)
 		is_releasing = false
 		is_drawing = false
+
+
+# Kiểm tra xem vũ khí có đang xử lý tấn công không
+func is_attacking() -> bool:
+	return is_drawing or is_releasing
