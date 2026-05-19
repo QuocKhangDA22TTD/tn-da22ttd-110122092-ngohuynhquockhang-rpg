@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://duplrhxctrtde" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dvilgeii024ul" path="res://scripts/entities/player/player.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://dw7p628bxvoo6" path="res://scripts/system/combat/hitbox.gd" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://cmvrptn5x6r0i" path="res://assets/hand_pulling_bow.png" id="4_dqkch"]
 
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
@@ -1720,6 +1721,10 @@ libraries/ = SubResource("AnimationLibrary_i4ail")
 
 [node name="ArrowSpawnPoint" type="Marker2D" parent="WeaponVisual/WeaponPivot" unique_id=1897923049]
 visible = false
+
+[node name="HandSprite" type="Sprite2D" parent="WeaponVisual/WeaponPivot" unique_id=36738908]
+visible = false
+texture = ExtResource("4_dqkch")
 
 [node name="AnimationWeapon" type="AnimationPlayer" parent="WeaponVisual" unique_id=1054018421]
 libraries/ = SubResource("AnimationLibrary_f1ej7")
