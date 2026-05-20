@@ -2254,7 +2254,7 @@ _data = {
 &"slash_effect_up": SubResource("Animation_4r5pv")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=955801447 node_paths=PackedStringArray("camera_2d", "animation_player", "sprite_2d", "weapon_sprite_2d", "weapon_pivot", "effect_sprite_2d", "hitbox", "animation_weapon", "arrow_spawn_point")]
+[node name="Player" type="CharacterBody2D" unique_id=955801447 node_paths=PackedStringArray("camera_2d", "animation_player", "sprite_2d", "weapon_sprite_2d", "weapon_pivot", "effect_sprite_2d", "hitbox", "animation_weapon", "arrow_spawn_point", "arm_sprite_2d")]
 script = ExtResource("1_g2els")
 camera_2d = NodePath("Camera2D")
 animation_player = NodePath("AnimationPlayer")
@@ -2265,6 +2265,7 @@ effect_sprite_2d = NodePath("WeaponVisual/WeaponPivot/EffectSprite2D")
 hitbox = NodePath("WeaponVisual/WeaponPivot/Hitbox")
 animation_weapon = NodePath("WeaponVisual/AnimationWeapon")
 arrow_spawn_point = NodePath("WeaponVisual/WeaponPivot/ArrowSpawnPoint")
+arm_sprite_2d = NodePath("WeaponVisual/WeaponPivot/ArmSprite2D")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1986414232]
 zoom = Vector2(4, 4)

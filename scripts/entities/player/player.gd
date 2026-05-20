@@ -12,11 +12,14 @@ extends CharacterBody2D
 @export var hitbox: Hitbox # Tham chiếu đến hitbox để xử lý va chạm tấn công
 @export var animation_weapon: AnimationPlayer # Tham chiếu đến animation player để phát hoạt ảnh vũ khí
 @export var arrow_spawn_point: Marker2D # Tham chiếu đến điểm spawn projectile cho tấn công tầm xa
+@export var arm_sprite_2d: Sprite2D
 
 # Hướng cuối cùng nhân vật đang quay mặt
 var last_direction: String = "down"
 # Vector chứa input từ bàn phím
 var input_vector := Vector2.ZERO
+# Hậu tố hoạt ảnh dựa trên loại vũ khí 
+var animation_suffix: String = ""
 
 func _ready() -> void:
 	GameManager.player = self
@@ -25,19 +28,18 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	input_vector = _get_input_vector()
 	
-	# Tính toán vận tốc dựa trên input và tốc độ
 	velocity = input_vector * speed
 	move_and_slide()
 	
-	# Xử lý input tấn công
 	_handle_attack_input() 
 
-	# Cập nhật hoạt ảnh và hướng nhân vật
+	# Cập nhật last_direction theo chuột nếu cầm ranged weapon
+	if current_weapon and current_weapon.weapon_type == WeaponData.WeaponType.RANGED:
+		_update_direction_from_mouse()
+	
 	_update_animation_and_direction()
 	
-	# Làm tròn vị trí để tránh pixel lẻ
 	global_position = global_position.round()
-	# Camera theo dõi nhân vật
 	camera_2d.global_position = global_position
 
 
@@ -52,30 +54,58 @@ func _get_input_vector():
 	)
 
 
-# Cập nhật hoạt ảnh và hướng nhân vật dựa trên input
+func _update_direction_from_mouse():
+	var mouse_pos = get_global_mouse_position()
+	var weapon_pivot = weapon_pivot.global_position
+	var direction = (mouse_pos - weapon_pivot).normalized()
+	var angle = atan2(direction.y, direction.x)
+	
+	if angle > -PI/4 and angle < PI/4:
+		last_direction = "side"
+		sprite_2d.flip_h = false
+	elif angle > PI/4 and angle < 3*PI/4:
+		last_direction = "down"
+		sprite_2d.flip_h = false
+	elif angle < -PI/4 and angle > -3*PI/4:
+		last_direction = "up"
+		sprite_2d.flip_h = false
+	else:
+		last_direction = "side"
+		sprite_2d.flip_h = true
+
+
 func _update_animation_and_direction():
 	if animation_player.current_animation.begins_with("melee_attack"):
-		return  # Không phát animation di chuyển nếu đang tấn công
+		return
+	
+	_update_animation_suffix()
 
 	if input_vector != Vector2.ZERO:
-		# Ưu tiên di chuyển ngang hơn dọc
-		if input_vector.x != 0:
-			animation_player.play("move_side")
-			sprite_2d.flip_h = input_vector.x < 0  # Lật sprite khi đi sang trái
-			last_direction = "side"
+		# Nếu cầm ranged weapon, phát animation move dựa trên last_direction (từ chuột)
+		if current_weapon and current_weapon.weapon_type == WeaponData.WeaponType.RANGED:
+			match last_direction:
+				"side":   animation_player.play("move_side" + animation_suffix)
+				"up":     animation_player.play("move_up" + animation_suffix)
+				"down":   animation_player.play("move_down" + animation_suffix)
 		else:
-			if input_vector.y > 0:
-				animation_player.play("move_down")
-				last_direction = "down"
+			# Nếu cầm melee weapon, phát animation move dựa trên input_vector
+			if input_vector.x != 0:
+				animation_player.play("move_side" + animation_suffix)
+				sprite_2d.flip_h = input_vector.x < 0
+				last_direction = "side"
 			else:
-				animation_player.play("move_up")
-				last_direction = "up"
+				if input_vector.y > 0:
+					animation_player.play("move_down" + animation_suffix)
+					last_direction = "down"
+				else:
+					animation_player.play("move_up" + animation_suffix)
+					last_direction = "up"
 	else:
-		# Khi đứng yên, phát hoạt ảnh idle theo hướng cuối cùng
 		match last_direction:
-			"side":   animation_player.play("idle_side")
-			"up":     animation_player.play("idle_up")
-			_:        animation_player.play("idle_down")
+			"side":   animation_player.play("idle_side" + animation_suffix)
+			"up":     animation_player.play("idle_up" + animation_suffix)
+			_:        animation_player.play("idle_down" + animation_suffix)
+
 
 
 func _handle_attack_input():
@@ -88,3 +118,11 @@ func _handle_attack_input():
 	input_state.just_released = Input.is_action_just_released("attack")
 	
 	current_weapon.attack_behavior.handle_input(self, current_weapon, input_state)
+
+
+# Cập nhật hậu tố hoạt ảnh dựa trên loại vũ khí
+func _update_animation_suffix():
+	if current_weapon and current_weapon.weapon_type == WeaponData.WeaponType.RANGED:
+		animation_suffix = "_" + current_weapon.name
+	else:
+		animation_suffix = ""

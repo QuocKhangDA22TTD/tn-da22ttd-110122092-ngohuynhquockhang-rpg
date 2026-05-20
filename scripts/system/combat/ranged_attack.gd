@@ -107,10 +107,12 @@ func update_bow_aim(user):
 		"left":
 			user.sprite_2d.flip_h = true
 			user.last_direction = "side"
+			user.arm_sprite_2d.scale.y = -1.0
 
 		"right":
 			user.sprite_2d.flip_h = false
 			user.last_direction = "side"
+			user.arm_sprite_2d.scale.y = 1.0
 
 		"up":
 			user.sprite_2d.flip_h = false
