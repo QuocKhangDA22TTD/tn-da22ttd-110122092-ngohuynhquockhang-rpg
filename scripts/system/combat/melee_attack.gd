@@ -87,7 +87,7 @@ func handle_input(user, weapon_data, input_state):
 	if user.arm_sprite_2d.visible:
 		user.arm_sprite_2d.visible = false # Ẩn tay cầm vũ khí nếu đang hiển thị (trường hợp cầm melee weapon)
 
-	if input_state.just_pressed:
+	if input_state.just_pressed and not user.is_dodging:
 		execute(user, weapon_data)
 	elif not is_executing:
 		user.weapon_sprite_2d.visible = false # Ẩn vũ khí nếu không đang tấn công
