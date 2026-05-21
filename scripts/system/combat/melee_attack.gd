@@ -84,6 +84,9 @@ func execute(user, weapon_data):
 func handle_input(user, weapon_data, input_state):
 	ensure_ready(user) # Đảm bảo đã kết nối tín hiệu hit_enemy của hitbox trước khi xử lý input
 
+	if user.arm_sprite_2d.visible:
+		user.arm_sprite_2d.visible = false # Ẩn tay cầm vũ khí nếu đang hiển thị (trường hợp cầm melee weapon)
+
 	if input_state.just_pressed:
 		execute(user, weapon_data)
 	elif not is_executing:
