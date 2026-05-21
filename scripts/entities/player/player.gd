@@ -14,12 +14,23 @@ extends CharacterBody2D
 @export var arrow_spawn_point: Marker2D # Tham chiếu đến điểm spawn projectile cho tấn công tầm xa
 @export var arm_sprite_2d: Sprite2D
 
+# Dodge settings
+@export var dodge_speed: float = 200.0 # Tốc độ dodge
+@export var dodge_duration: float = 0.3 # Thời gian dodge
+@export var dodge_cooldown: float = 0.8 # Thời gian chờ giữa các dodge
+
 # Hướng cuối cùng nhân vật đang quay mặt
 var last_direction: String = "down"
 # Vector chứa input từ bàn phím
 var input_vector := Vector2.ZERO
 # Hậu tố hoạt ảnh dựa trên loại vũ khí 
 var animation_suffix: String = ""
+
+# Dodge state
+var is_dodging: bool = false # Biến trạng thái để kiểm tra nếu nhân vật đang trong quá trình dodge
+var dodge_timer: float = 0.0 # Bộ đếm thời gian để theo dõi thời gian còn lại của dodge
+var dodge_cooldown_timer: float = 0.0 # Bộ đếm thời gian chờ giữa các dodge
+var dodge_direction: Vector2 = Vector2.ZERO # Vector hướng của dodge, được xác định khi bắt đầu dodge
 
 func _ready() -> void:
 	GameManager.player = self
@@ -28,10 +39,20 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	input_vector = _get_input_vector()
 	
-	velocity = input_vector * speed
+	# Cập nhật dodge cooldown
+	if dodge_cooldown_timer > 0:
+		dodge_cooldown_timer -= delta
+	
+	# Xử lý dodge
+	if is_dodging:
+		_update_dodge(delta)
+	else:
+		velocity = input_vector * speed
+	
 	move_and_slide()
 	
-	_handle_attack_input() 
+	_handle_attack_input()
+	_handle_dodge_input()
 
 	# Cập nhật last_direction theo chuột nếu cầm ranged weapon
 	if current_weapon and current_weapon.weapon_type == WeaponData.WeaponType.RANGED:
@@ -45,8 +66,8 @@ func _physics_process(delta: float) -> void:
 
 # Lấy vector input từ bàn phím (WASD hoặc mũi tên)
 func _get_input_vector():
-	if animation_player.current_animation.begins_with("melee_attack"):
-		return Vector2.ZERO  # Không nhận input di chuyển nếu đang tấn công
+	if animation_player.current_animation.begins_with("melee_attack") or is_dodging:
+		return Vector2.ZERO  # Không nhận input di chuyển nếu đang tấn công hoặc dodge
 	
 	return Vector2(
 		Input.get_axis("ui_left", "ui_right"),
@@ -75,7 +96,7 @@ func _update_direction_from_mouse():
 
 
 func _update_animation_and_direction():
-	if animation_player.current_animation.begins_with("melee_attack"):
+	if animation_player.current_animation.begins_with("melee_attack") or is_dodging:
 		return
 	
 	_update_animation_suffix()
@@ -109,8 +130,11 @@ func _update_animation_and_direction():
 
 
 func _handle_attack_input():
+	if is_dodging or animation_player.current_animation.begins_with("melee_attack"):
+		return # Không thể tấn công nếu đang dodge và animation tấn công melee đang phát
+	
 	if current_weapon == null or current_weapon.attack_behavior == null:
-		return
+		return  # Không có vũ khí hoặc vũ khí không có hành vi tấn công, bỏ qua xử lý tấn công
 		
 	var input_state = AttackInputState.new()
 	input_state.pressed = Input.is_action_pressed("attack")
@@ -126,3 +150,42 @@ func _update_animation_suffix():
 		animation_suffix = "_" + current_weapon.name
 	else:
 		animation_suffix = ""
+
+
+func _handle_dodge_input():
+	if animation_player.current_animation.begins_with("melee_attack"):
+		return # Không thể dodge nếu đang tấn công melee
+	
+	if Input.is_action_just_pressed("ui_accept") and not is_dodging and dodge_cooldown_timer <= 0:
+		_start_dodge()
+
+
+func _start_dodge():
+	is_dodging = true
+	dodge_timer = dodge_duration
+	dodge_cooldown_timer = dodge_cooldown
+	
+	# Xác định hướng dodge
+	if input_vector != Vector2.ZERO:
+		dodge_direction = input_vector.normalized()
+	else:
+		# Nếu không có input, dodge theo hướng nhân vật đang quay mặt
+		match last_direction:
+			"side":
+				dodge_direction = Vector2(-1 if sprite_2d.flip_h else 1, 0)
+			"up":
+				dodge_direction = Vector2(0, -1)
+			"down":
+				dodge_direction = Vector2(0, 1)
+	
+	animation_player.play("dodge_side")
+
+
+func _update_dodge(delta: float):
+	dodge_timer -= delta
+	
+	if dodge_timer <= 0:
+		is_dodging = false
+		velocity = Vector2.ZERO
+	else:
+		velocity = dodge_direction * dodge_speed

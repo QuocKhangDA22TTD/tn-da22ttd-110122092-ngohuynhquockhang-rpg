@@ -45,6 +45,22 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_487ah"]
+resource_name = "dodge_side"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0),
+"update": 1,
+"values": [72, 73, 74, 75, 76, 77]
+}
+
 [sub_resource type="Animation" id="Animation_qhqgy"]
 resource_name = "idle_down"
 length = 0.25
@@ -74,7 +90,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(0),
 "update": 1,
-"values": [32]
+"values": [48]
 }
 
 [sub_resource type="Animation" id="Animation_dqkch"]
@@ -106,7 +122,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(0),
 "update": 1,
-"values": [33]
+"values": [49]
 }
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
@@ -138,7 +154,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(0),
 "update": 1,
-"values": [34]
+"values": [50]
 }
 
 [sub_resource type="Animation" id="Animation_y4r1p"]
@@ -154,7 +170,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(0, 0),
 "update": 1,
-"values": [16, 17]
+"values": [24, 25]
 }
 tracks/1/type = "animation"
 tracks/1/imported = false
@@ -180,7 +196,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(0, 0),
 "update": 1,
-"values": [20, 21]
+"values": [30, 31]
 }
 tracks/1/type = "animation"
 tracks/1/imported = false
@@ -230,7 +246,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(0, 0),
 "update": 1,
-"values": [24, 25]
+"values": [36, 37]
 }
 tracks/1/type = "animation"
 tracks/1/imported = false
@@ -257,7 +273,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(0, 0, 0, 0),
 "update": 1,
-"values": [8, 9, 10, 11]
+"values": [12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_wqfne"]
@@ -274,7 +290,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(0, 0, 0, 0),
 "update": 1,
-"values": [40, 41, 42, 43]
+"values": [60, 61, 62, 63]
 }
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
@@ -291,7 +307,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(0, 0, 0, 0),
 "update": 1,
-"values": [4, 5, 6, 7]
+"values": [6, 7, 8, 9]
 }
 
 [sub_resource type="Animation" id="Animation_wnwbv"]
@@ -308,7 +324,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(0, 0, 0, 0),
 "update": 1,
-"values": [36, 37, 38, 39]
+"values": [54, 55, 56, 57]
 }
 
 [sub_resource type="Animation" id="Animation_smehm"]
@@ -325,7 +341,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(0, 0, 0, 0),
 "update": 1,
-"values": [12, 13, 14, 15]
+"values": [18, 19, 20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_gl8cc"]
@@ -342,12 +358,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(0, 0, 0, 0),
 "update": 1,
-"values": [44, 45, 46, 47]
+"values": [66, 67, 68, 69]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
 _data = {
 &"RESET": SubResource("Animation_g2els"),
+&"dodge_side": SubResource("Animation_487ah"),
 &"idle_down": SubResource("Animation_qhqgy"),
 &"idle_down_bow": SubResource("Animation_31cv2"),
 &"idle_side": SubResource("Animation_dqkch"),
@@ -2266,6 +2283,7 @@ hitbox = NodePath("WeaponVisual/WeaponPivot/Hitbox")
 animation_weapon = NodePath("WeaponVisual/AnimationWeapon")
 arrow_spawn_point = NodePath("WeaponVisual/WeaponPivot/ArrowSpawnPoint")
 arm_sprite_2d = NodePath("WeaponVisual/WeaponPivot/ArmSprite2D")
+dodge_cooldown = 0.01
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1986414232]
 zoom = Vector2(4, 4)
@@ -2275,8 +2293,8 @@ position_smoothing_speed = 25.0
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1546273366]
 texture = ExtResource("1_3vyb7")
 offset = Vector2(0, -12)
-hframes = 4
-vframes = 12
+hframes = 6
+vframes = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1667656743]
 libraries/ = SubResource("AnimationLibrary_fjrip")
