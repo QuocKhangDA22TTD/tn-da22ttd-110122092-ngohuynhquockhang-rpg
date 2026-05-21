@@ -2,17 +2,17 @@ extends AttackBehavior
 class_name RangedAttack
 
 var current_weapon_data: WeaponData
-var is_drawing: bool = false
-var is_releasing: bool = false
 var current_projectile: Node = null
-var is_ready: bool = false
+
+var is_drawing := false
+var is_releasing := false
+var is_ready := false
 
 
 func ensure_ready(user):
 	if is_ready:
 		return
 
-	# Kết nối signal animation_finished một lần duy nhất
 	if not user.animation_weapon.animation_finished.is_connected(_on_weapon_animation_finished):
 		user.animation_weapon.animation_finished.connect(
 			_on_weapon_animation_finished.bind(user)
@@ -24,44 +24,113 @@ func ensure_ready(user):
 func handle_input(user, weapon_data, input_state):
 	current_weapon_data = weapon_data
 
-	ensure_weapon_visible(user)
 	ensure_ready(user)
 	update_bow_aim(user)
 
+	# Nếu đang trong trạng thái dodge, xử lý ẩn hiện vũ khí và hủy bỏ projectile nếu có, sau đó bỏ qua các input tấn công
+	if handle_dodge_state(user):
+		return
+
+	# just_pressed để bắt đầu quá trình kéo dây cung
 	if input_state.just_pressed:
-		is_drawing = true
-		is_releasing = false
-		bow_draw(user)
+		start_draw(user)
 
-		# Tạo projectile
-		var projectile_scene = preload("res://scenes/Projectile.tscn")
-		current_projectile = projectile_scene.instantiate()
-
-		current_projectile.global_position = user.arrow_spawn_point.global_position
-		current_projectile.rotation = user.weapon_pivot.global_rotation
-
-		ProjectileManager.add_child(current_projectile)
-
+	# pressed để cập nhật vị trí và hướng của projectile trong khi kéo dây cung
 	elif input_state.pressed and is_drawing:
-		# Giữ projectile tại vị trí spawn khi đang kéo
-		if current_projectile:
-			current_projectile.global_position = user.arrow_spawn_point.global_position
-			current_projectile.rotation = user.weapon_pivot.global_rotation
+		update_draw(user)
 
+	# just_released để bắn tên và kết thúc quá trình tấn công
 	elif input_state.just_released and is_drawing:
-		# Bắn projectile
-		if current_projectile:
-			current_projectile.speed = 400.0
-			current_projectile.direction = Vector2.RIGHT.rotated(
-				user.weapon_pivot.global_rotation
-			)
-			current_projectile = null
+		release_attack(user)
 
-		bow_release(user)
-		is_releasing = true
-
-	elif not is_drawing and not is_releasing:
+	# Nếu không có input nào và không đang tấn công, chuyển về trạng thái idle của cung
+	elif not is_attacking():
 		bow_idle(user)
+
+
+func handle_dodge_state(user) -> bool:
+	if not user.is_dodging:
+		show_weapon(user)
+		return false
+
+	hide_weapon(user)
+
+	cancel_projectile()
+
+	is_drawing = false
+	is_releasing = false
+
+	return true
+
+
+func show_weapon(user):
+	user.weapon_sprite_2d.visible = true
+	user.arm_sprite_2d.visible = true
+
+	if current_projectile:
+		current_projectile.visible = true
+
+
+func hide_weapon(user):
+	user.weapon_sprite_2d.visible = false
+	user.arm_sprite_2d.visible = false
+
+	if current_projectile:
+		current_projectile.visible = false
+
+
+func start_draw(user):
+	is_drawing = true
+	is_releasing = false
+
+	bow_draw(user)
+	spawn_projectile(user)
+
+
+func update_draw(user):
+	if not current_projectile:
+		return
+
+	current_projectile.global_position = user.arrow_spawn_point.global_position
+	current_projectile.rotation = user.weapon_pivot.global_rotation
+
+
+func release_attack(user):
+	fire_projectile(user)
+
+	bow_release(user)
+
+	is_drawing = false
+	is_releasing = true
+
+
+func spawn_projectile(user):
+	var projectile_scene = preload("res://scenes/Projectile.tscn")
+
+	current_projectile = projectile_scene.instantiate()
+
+	current_projectile.global_position = user.arrow_spawn_point.global_position
+	current_projectile.rotation = user.weapon_pivot.global_rotation
+
+	ProjectileManager.add_child(current_projectile)
+
+
+func fire_projectile(user):
+	if not current_projectile:
+		return
+
+	current_projectile.speed = 400.0
+	current_projectile.direction = Vector2.RIGHT.rotated(
+		user.weapon_pivot.global_rotation
+	)
+
+	current_projectile = null
+
+
+func cancel_projectile():
+	if current_projectile:
+		current_projectile.queue_free()
+		current_projectile = null
 
 
 func bow_idle(user):
@@ -76,34 +145,30 @@ func bow_release(user):
 	play_weapon_animation(user, "bow_release")
 
 
-func apply_bow_shake(user):
-	var shake_amount: float = 0.25
-	var shake_x: float = randf_range(-shake_amount, shake_amount)
-	var shake_y: float = randf_range(-shake_amount, shake_amount)
-	user.weapon_pivot.global_position += Vector2(shake_x, shake_y)
-
-
-func ensure_weapon_visible(user):
-	if not user.weapon_sprite_2d.visible:
-		user.weapon_sprite_2d.visible = true
-
-
 func play_weapon_animation(user, animation_name: String):
 	if user.animation_weapon.current_animation != animation_name:
 		user.animation_weapon.play(animation_name)
 
 
+func apply_bow_shake(user):
+	var shake_amount := 0.25
+
+	user.weapon_pivot.global_position += Vector2(
+		randf_range(-shake_amount, shake_amount),
+		randf_range(-shake_amount, shake_amount)
+	)
+
+
 func update_bow_aim(user):
-	var mouse_pos: Vector2 = user.get_global_mouse_position()
-	var pivot_pos: Vector2 = user.weapon_pivot.global_position
-	var direction: Vector2 = (mouse_pos - pivot_pos).normalized()
-	var angle: float = direction.angle()
+	var mouse_pos = user.get_global_mouse_position()
+	var pivot_pos = user.weapon_pivot.global_position
+
+	var direction = (mouse_pos - pivot_pos).normalized()
+	var angle = direction.angle()
 
 	user.weapon_pivot.rotation = angle
 
-	var attack_direction: String = get_attack_direction(angle)
-
-	match attack_direction:
+	match get_attack_direction(angle):
 		"left":
 			user.sprite_2d.flip_h = true
 			user.last_direction = "side"
@@ -130,17 +195,15 @@ func get_attack_direction(angle: float) -> String:
 		return "down"
 	elif angle >= -3 * PI / 4 and angle < -PI / 4:
 		return "up"
-	else:
-		return "left"
+
+	return "left"
 
 
 func _on_weapon_animation_finished(anim_name: StringName, user):
 	if anim_name == "bow_release":
 		bow_idle(user)
 		is_releasing = false
-		is_drawing = false
 
 
-# Kiểm tra xem vũ khí có đang xử lý tấn công không
 func is_attacking() -> bool:
 	return is_drawing or is_releasing
