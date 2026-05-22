@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bugdyovlrdlon"]
+
+[node name="EnemySpawner" type="Marker2D" unique_id=166305411]
