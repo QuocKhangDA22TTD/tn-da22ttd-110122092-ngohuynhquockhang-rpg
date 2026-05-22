@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://bptsnoc6m8hva"]
 
-[ext_resource type="Texture2D" uid="uid://eec23hcg0uyb" path="res://assets/tile.png" id="1_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://cpitsgqfub6hn" path="res://scenes/player.tscn" id="2_dinhu"]
-[ext_resource type="PackedScene" uid="uid://cfvxrdmvfuaw" path="res://scenes/inventory/item_drop.tscn" id="4_trtic"]
-[ext_resource type="Resource" uid="uid://2oxjf8hoxd7c" path="res://data/items/sword.tres" id="5_ir15t"]
-[ext_resource type="Resource" uid="uid://bbi5qug4kumuc" path="res://data/items/bow.tres" id="6_ca42v"]
-[ext_resource type="Resource" uid="uid://bqys23112x6ok" path="res://data/items/potion.tres" id="7_rysoc"]
-[ext_resource type="PackedScene" uid="uid://c06klg74cglxk" path="res://scenes/inventory/inventory_ui.tscn" id="8_ssvqc"]
-[ext_resource type="PackedScene" uid="uid://csoqgl1rfxiss" path="res://scenes/inventory/hotbar_ui.tscn" id="9_264po"]
-[ext_resource type="PackedScene" uid="uid://y7gka8f5usv2" path="res://scenes/enemy.tscn" id="10_1kice"]
-[ext_resource type="Resource" uid="uid://dd3g26wg0xp5c" path="res://data/enemies/slime.tres" id="11_5newe"]
+[ext_resource type="Texture2D" uid="uid://eec23hcg0uyb" path="res://assets/tile.png" id="1_e3hyu"]
+[ext_resource type="Script" uid="uid://dx76qsv8hh17s" path="res://scripts/core/scripts/world.gd" id="1_q5onr"]
+[ext_resource type="PackedScene" uid="uid://cpitsgqfub6hn" path="res://scenes/player.tscn" id="2_q5onr"]
+[ext_resource type="PackedScene" uid="uid://y7gka8f5usv2" path="res://scenes/enemy.tscn" id="3_jhx03"]
+[ext_resource type="Resource" uid="uid://dd3g26wg0xp5c" path="res://data/enemies/slime.tres" id="4_o8fc1"]
+[ext_resource type="PackedScene" uid="uid://cfvxrdmvfuaw" path="res://scenes/inventory/item_drop.tscn" id="5_xo05s"]
+[ext_resource type="Resource" uid="uid://2oxjf8hoxd7c" path="res://data/items/sword.tres" id="6_dss4m"]
+[ext_resource type="Resource" uid="uid://bbi5qug4kumuc" path="res://data/items/bow.tres" id="7_7t5mc"]
+[ext_resource type="Resource" uid="uid://bqys23112x6ok" path="res://data/items/potion.tres" id="8_lakw3"]
+[ext_resource type="PackedScene" uid="uid://c06klg74cglxk" path="res://scenes/inventory/inventory_ui.tscn" id="9_pm21f"]
+[ext_resource type="PackedScene" uid="uid://csoqgl1rfxiss" path="res://scenes/inventory/hotbar_ui.tscn" id="10_2lf6f"]
+[ext_resource type="PackedScene" uid="uid://bugdyovlrdlon" path="res://scenes/enemy_spawner.tscn" id="11_7iits"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ba4lm"]
-texture = ExtResource("1_kvpfn")
+texture = ExtResource("1_e3hyu")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
@@ -20,7 +22,8 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_ba4lm")
 
-[node name="Game" type="Node2D" unique_id=2114139567]
+[node name="World" type="Node2D" unique_id=2114139567]
+script = ExtResource("1_q5onr")
 
 [node name="Maps" type="Node2D" parent="." unique_id=83877726]
 
@@ -31,45 +34,48 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608,
 
 [node name="Entities" type="Node2D" parent="." unique_id=724745038]
 
-[node name="Player" parent="Entities" unique_id=955801447 instance=ExtResource("2_dinhu")]
+[node name="Player" parent="Entities" unique_id=955801447 instance=ExtResource("2_q5onr")]
 position = Vector2(276, 260)
 
-[node name="Enemy" parent="Entities" unique_id=2023807860 instance=ExtResource("10_1kice")]
+[node name="Enemy" parent="Entities" unique_id=2023807860 instance=ExtResource("3_jhx03")]
 position = Vector2(736, 277)
-data = ExtResource("11_5newe")
+data = ExtResource("4_o8fc1")
 
 [node name="Items" type="Node2D" parent="." unique_id=1685418430]
 
-[node name="ItemDrop" parent="Items" unique_id=1534783335 instance=ExtResource("4_trtic")]
+[node name="ItemDrop" parent="Items" unique_id=1534783335 instance=ExtResource("5_xo05s")]
 position = Vector2(100, 103)
-item = ExtResource("5_ir15t")
+item = ExtResource("6_dss4m")
 
-[node name="ItemDrop2" parent="Items" unique_id=1548748483 instance=ExtResource("4_trtic")]
+[node name="ItemDrop2" parent="Items" unique_id=1548748483 instance=ExtResource("5_xo05s")]
 position = Vector2(201, 104)
-item = ExtResource("5_ir15t")
+item = ExtResource("6_dss4m")
 
-[node name="ItemDrop3" parent="Items" unique_id=1615172490 instance=ExtResource("4_trtic")]
+[node name="ItemDrop3" parent="Items" unique_id=1615172490 instance=ExtResource("5_xo05s")]
 position = Vector2(294, 103)
-item = ExtResource("6_ca42v")
+item = ExtResource("7_7t5mc")
 
-[node name="ItemDrop4" parent="Items" unique_id=625865559 instance=ExtResource("4_trtic")]
+[node name="ItemDrop4" parent="Items" unique_id=625865559 instance=ExtResource("5_xo05s")]
 position = Vector2(201, 186)
-item = ExtResource("7_rysoc")
+item = ExtResource("8_lakw3")
 
-[node name="ItemDrop5" parent="Items" unique_id=1265507454 instance=ExtResource("4_trtic")]
+[node name="ItemDrop5" parent="Items" unique_id=1265507454 instance=ExtResource("5_xo05s")]
 position = Vector2(299, 187)
-item = ExtResource("7_rysoc")
+item = ExtResource("8_lakw3")
 
-[node name="ItemDrop6" parent="Items" unique_id=272055226 instance=ExtResource("4_trtic")]
+[node name="ItemDrop6" parent="Items" unique_id=272055226 instance=ExtResource("5_xo05s")]
 position = Vector2(94, 184)
-item = ExtResource("7_rysoc")
+item = ExtResource("8_lakw3")
 
-[node name="ItemDrop7" parent="Items" unique_id=301604292 instance=ExtResource("4_trtic")]
+[node name="ItemDrop7" parent="Items" unique_id=301604292 instance=ExtResource("5_xo05s")]
 position = Vector2(92, 268)
-item = ExtResource("7_rysoc")
+item = ExtResource("8_lakw3")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=303326724]
 
-[node name="InventoryUI" parent="UI" unique_id=1898595049 instance=ExtResource("8_ssvqc")]
+[node name="InventoryUI" parent="UI" unique_id=1898595049 instance=ExtResource("9_pm21f")]
 
-[node name="HotbarUI" parent="UI" unique_id=1524678013 instance=ExtResource("9_264po")]
+[node name="HotbarUI" parent="UI" unique_id=1524678013 instance=ExtResource("10_2lf6f")]
+
+[node name="EnemySpawner" parent="." unique_id=166305411 instance=ExtResource("11_7iits")]
+position = Vector2(470, 255)
