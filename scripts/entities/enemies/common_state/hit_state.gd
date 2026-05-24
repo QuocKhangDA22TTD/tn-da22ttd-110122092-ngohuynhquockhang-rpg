@@ -33,7 +33,7 @@ func _on_anim_finished(anim_name, enemy):
 		return
 
 	# Sau khi animation hit xong mới quyết định state tiếp theo
-	if enemy.hp <= 0:
+	if enemy.current_health <= 0:
 		enemy.change_state(enemy.get_state(DieState))
 	else:
 		enemy.change_state(enemy.get_state(IdleState))

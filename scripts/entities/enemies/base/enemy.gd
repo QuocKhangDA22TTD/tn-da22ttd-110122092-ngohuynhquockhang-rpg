@@ -4,15 +4,20 @@ extends CharacterBody2D
 @export var states: Array[EnemyState]
 @export var sprite_2d: Sprite2D
 @export var animation_player: AnimationPlayer
+@export var health_bar: TextureProgressBar
+@export var damage_number_scene: PackedScene # Cảnh để hiển thị số sát thương khi Enemy bị tấn công
 
 var current_state: EnemyState
-var hp: int
+var current_health: int # Máu hiện tại của Enemy
 var speed: float
 
 func _ready():
-	hp = data.max_hp
-	speed = data.speed
-	
+	current_health = data.max_hp # Khởi tạo máu hiện tại bằng máu tối đa từ EnemyData
+	health_bar.max_value = data.max_hp # Thiết lập giá trị tối đa của thanh máu bằng máu tối đa từ EnemyData
+	health_bar.value = current_health # Cập nhật giá trị của thanh máu bằng current_health để đảm bảo nó hiển thị đúng ngay từ đầu
+	health_bar.visible = false # ẩn thanh máu khi chưa bị tấn công
+	speed = data.speed # Khởi tạo tốc độ từ EnemyData
+
 	for state in data.states:
 		states.append(state)
 	
@@ -72,8 +77,26 @@ func distance_to_player():
 
 
 func take_damage(amount, source = null): # source là nguồn gây sát thương, có thể là player hoặc một cái gì đó khác
-	hp -= amount
+	current_health -= amount
+	current_health = clampi(current_health, 0, data.max_hp) # Đảm bảo máu không vượt quá max_hp và không âm
+	health_bar.value = current_health # Cập nhật giá trị của thanh máu sau khi bị tấn công
+	health_bar.visible = true # hiện thanh máu khi bị tấn công
+
+	spawn_damage_number(amount) # Hiển thị số sát thương
 	
 	var hit_state = get_state(HitState)
 	hit_state.damage_source = source # Truyền nguồn gây sát thương vào hit state để có thể sử dụng nếu cần
 	change_state(hit_state)
+
+
+func spawn_damage_number(amount: int):
+	if damage_number_scene:
+		var damage_number = damage_number_scene.instantiate()
+		# Đặt vị trí xuất hiện ngay tại tâm Enemy (hoặc lệch lên trên một chút)
+		damage_number.global_position = global_position + Vector2(0, -20) 
+		
+		# Truyền dữ liệu vào node số sát thương
+		damage_number.set_values(amount, false)
+		
+		# Thêm vào Main Scene để không bị di chuyển theo Enemy khi Enemy chạy
+		get_tree().current_scene.add_child(damage_number)
