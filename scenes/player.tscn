@@ -2272,6 +2272,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=955801447 node_paths=PackedStringArray("camera_2d", "animation_player", "sprite_2d", "weapon_sprite_2d", "weapon_pivot", "effect_sprite_2d", "hitbox", "animation_weapon", "arrow_spawn_point", "arm_sprite_2d")]
+collision_mask = 2
 script = ExtResource("1_g2els")
 camera_2d = NodePath("Camera2D")
 animation_player = NodePath("AnimationPlayer")
