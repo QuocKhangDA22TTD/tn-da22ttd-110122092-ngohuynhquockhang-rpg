@@ -105,7 +105,7 @@ func release_attack(user):
 
 
 func spawn_projectile(user):
-	var projectile_scene = preload("res://scenes/Projectile.tscn")
+	var projectile_scene = preload("res://scenes/projectile.tscn")
 
 	current_projectile = projectile_scene.instantiate()
 
