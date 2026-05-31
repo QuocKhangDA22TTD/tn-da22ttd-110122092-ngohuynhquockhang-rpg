@@ -15,6 +15,7 @@ class_name EnemyData
 @export var max_patrol_duration: float = 3.0 # Thời gian tối đa cho mỗi lượt đi tuần tra
 @export var chase_distance: float = 100.0 # Khoảng cách mà kẻ địch sẽ bắt đầu đuổi theo người chơi
 @export var attack_distance: float = 20.0 # Khoảng cách mà kẻ địch sẽ bắt đầu tấn công người chơi
+@export var reaction_delay: float = 1.0 # Thời gian cập nhật lại mục tiêu sau khi phát hiện người chơi
 
 # thông tin hoạt ảnh
 @export var animation_library: AnimationLibrary
