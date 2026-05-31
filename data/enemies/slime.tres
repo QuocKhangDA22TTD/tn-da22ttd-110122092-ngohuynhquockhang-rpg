@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://b3st7tlisfq5d" path="res://scripts/entities/enemies/base/enemy_state.gd" id="3_2pi8n"]
 [ext_resource type="Script" uid="uid://dwt32hvdxfg87" path="res://scripts/entities/enemies/common_state/idle_state.gd" id="4_g7c64"]
 [ext_resource type="Script" uid="uid://c152hvhl6bt57" path="res://scripts/entities/enemies/slime_chase_state.gd" id="5_g7c64"]
-[ext_resource type="Script" uid="uid://u14cnum8qsgi" path="res://scripts/entities/enemies/common_state/patrol_state.gd" id="6_sdq6s"]
+[ext_resource type="Script" uid="uid://c8k6lb6uwjhxt" path="res://scripts/entities/enemies/slime_patrol_state.gd" id="5_mc08e"]
 [ext_resource type="Script" uid="uid://d02u157pnnk1v" path="res://scripts/entities/enemies/common_state/attack_state.gd" id="7_qlfju"]
 [ext_resource type="Script" uid="uid://dh5hcns2relew" path="res://scripts/entities/enemies/common_state/hit_state.gd" id="8_qlfju"]
 [ext_resource type="Script" uid="uid://c6ey0a2anu52n" path="res://scripts/entities/enemies/common_state/die_state.gd" id="9_w2osu"]
@@ -14,9 +14,8 @@
 script = ExtResource("4_g7c64")
 metadata/_custom_type_script = "uid://dwt32hvdxfg87"
 
-[sub_resource type="Resource" id="Resource_bwmkw"]
-script = ExtResource("6_sdq6s")
-metadata/_custom_type_script = "uid://u14cnum8qsgi"
+[sub_resource type="Resource" id="Resource_n6ilt"]
+script = ExtResource("5_mc08e")
 
 [sub_resource type="Resource" id="Resource_w2osu"]
 script = ExtResource("5_g7c64")
@@ -39,5 +38,5 @@ script = ExtResource("1_j53m2")
 id = "slime"
 display_name = "slime"
 animation_library = ExtResource("1_hjcbr")
-states = Array[ExtResource("3_2pi8n")]([SubResource("Resource_sdq6s"), SubResource("Resource_bwmkw"), SubResource("Resource_w2osu"), SubResource("Resource_ec3vt"), SubResource("Resource_64lo3"), SubResource("Resource_hdd7q")])
+states = Array[ExtResource("3_2pi8n")]([SubResource("Resource_sdq6s"), SubResource("Resource_n6ilt"), SubResource("Resource_w2osu"), SubResource("Resource_ec3vt"), SubResource("Resource_64lo3"), SubResource("Resource_hdd7q")])
 metadata/_custom_type_script = "uid://caw6e3cxvhnos"
