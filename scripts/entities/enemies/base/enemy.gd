@@ -45,7 +45,7 @@ func _physics_process(delta):
 		current_state.update(self, delta)
 
 	# Gửi desired velocity tới NavigationAgent2D để avoidance hoạt động
-	if navigation_agent_2d and desired_velocity != Vector2.ZERO:
+	if navigation_agent_2d:
 		navigation_agent_2d.set_velocity(desired_velocity)
 	
 	# lật sprite dựa trên hướng di chuyển
@@ -56,8 +56,12 @@ func _physics_process(delta):
 
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
-	# Nhận velocity đã được điều chỉnh bởi avoidance
-	velocity = safe_velocity
+	# Nếu desired_velocity là Vector2.ZERO, có nghĩa là state hiện tại không muốn di chuyển,
+	# nên giữ nguyên velocity bằng Vector2.ZERO để tránh va chạm không cần thiết
+	if desired_velocity == Vector2.ZERO:
+		velocity = Vector2.ZERO
+	else:
+		velocity = safe_velocity # Sử dụng safe_velocity được tính toán bởi NavigationAgent2D để tránh va chạm
 
 
 func change_state(new_state):
