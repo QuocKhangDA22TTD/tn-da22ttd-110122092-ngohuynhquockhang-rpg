@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csoqgl1rfxiss"]
 
 [ext_resource type="Script" uid="uid://b2qjtdn42b8w" path="res://scripts/system/inventory/hotbar_ui.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dt0mss81fajoo" path="res://scenes/inventory/slot.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dt0mss81fajoo" path="res://scenes/ui/slot.tscn" id="2"]
 
 [node name="HotbarUI" type="Control" unique_id=373460562 node_paths=PackedStringArray("container")]
 layout_mode = 3

@@ -2,14 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://eec23hcg0uyb" path="res://assets/tile.png" id="1_e3hyu"]
 [ext_resource type="Script" uid="uid://dx76qsv8hh17s" path="res://scripts/core/scripts/world.gd" id="1_q5onr"]
-[ext_resource type="PackedScene" uid="uid://cpitsgqfub6hn" path="res://scenes/player.tscn" id="2_q5onr"]
-[ext_resource type="PackedScene" uid="uid://cfvxrdmvfuaw" path="res://scenes/inventory/item_drop.tscn" id="5_xo05s"]
+[ext_resource type="PackedScene" uid="uid://cpitsgqfub6hn" path="res://scenes/gameplay/player.tscn" id="2_q5onr"]
+[ext_resource type="PackedScene" uid="uid://cfvxrdmvfuaw" path="res://scenes/ui/item_drop.tscn" id="5_xo05s"]
 [ext_resource type="Resource" uid="uid://2oxjf8hoxd7c" path="res://data/items/sword.tres" id="6_dss4m"]
 [ext_resource type="Resource" uid="uid://bbi5qug4kumuc" path="res://data/items/bow.tres" id="7_7t5mc"]
 [ext_resource type="Resource" uid="uid://bqys23112x6ok" path="res://data/items/potion.tres" id="8_lakw3"]
-[ext_resource type="PackedScene" uid="uid://c06klg74cglxk" path="res://scenes/inventory/inventory_ui.tscn" id="9_pm21f"]
-[ext_resource type="PackedScene" uid="uid://csoqgl1rfxiss" path="res://scenes/inventory/hotbar_ui.tscn" id="10_2lf6f"]
-[ext_resource type="PackedScene" uid="uid://bugdyovlrdlon" path="res://scenes/enemy_spawner.tscn" id="11_7iits"]
+[ext_resource type="PackedScene" uid="uid://c06klg74cglxk" path="res://scenes/ui/inventory_ui.tscn" id="9_pm21f"]
+[ext_resource type="PackedScene" uid="uid://csoqgl1rfxiss" path="res://scenes/ui/hotbar_ui.tscn" id="10_2lf6f"]
+[ext_resource type="PackedScene" uid="uid://bugdyovlrdlon" path="res://scenes/managers/enemy_spawner.tscn" id="11_7iits"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_w7kh3"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctdig0k8nh8in"]
 
 [ext_resource type="Script" uid="uid://dbru6hdro38b3" path="res://scripts/system/inventory/trash_slot.gd" id="1_mb0ax"]
-[ext_resource type="PackedScene" uid="uid://cfvxrdmvfuaw" path="res://scenes/inventory/item_drop.tscn" id="2_5l1kn"]
+[ext_resource type="PackedScene" uid="uid://cfvxrdmvfuaw" path="res://scenes/ui/item_drop.tscn" id="2_5l1kn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l1kn"]
 bg_color = Color(0.9734265, 0, 0.254, 1)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bugdyovlrdlon"]
 
 [ext_resource type="Script" uid="uid://1lx1uj4x5ww3" path="res://scripts/system/spawning/enemy_spawner.gd" id="1_ks1gq"]
-[ext_resource type="PackedScene" uid="uid://y7gka8f5usv2" path="res://scenes/enemy.tscn" id="2_xl0gr"]
+[ext_resource type="PackedScene" uid="uid://y7gka8f5usv2" path="res://scenes/gameplay/enemy.tscn" id="2_xl0gr"]
 [ext_resource type="Resource" uid="uid://dd3g26wg0xp5c" path="res://data/enemies/slime.tres" id="3_ih16b"]
 
 [node name="EnemySpawner" type="Marker2D" unique_id=166305411]
