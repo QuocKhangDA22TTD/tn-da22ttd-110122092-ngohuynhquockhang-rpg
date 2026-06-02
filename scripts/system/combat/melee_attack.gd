@@ -112,6 +112,9 @@ func is_attacking() -> bool:
 
 # Hàm xử lý khi Hitbox va chạm với Hurtbox
 func _on_hitbox_hit_hurtbox(hurtbox: Area2D) -> void:
+	if hurtbox.is_in_group("player_hurtbox"):
+		return # Bỏ qua va chạm với player
+	
 	if hurtbox.has_method("take_damage"):
 		hurtbox.take_damage(current_weapon_data.damage, GameManager.player)
 	

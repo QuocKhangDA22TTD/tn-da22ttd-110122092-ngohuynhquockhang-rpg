@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var damage_number_scene: PackedScene # Cảnh để hiển thị số sát thương khi Enemy bị tấn công
 @export var navigation_agent_2d: NavigationAgent2D
 @export var hurtbox: Hurtbox
-@export var hitbox: Area2D
+@export var hitbox: Area2D # Hitbox để detect va chạm player melee attack + gây damage cho player khi enemy tấn công
 
 var current_state: EnemyState
 var current_health: int # Máu hiện tại của Enemy

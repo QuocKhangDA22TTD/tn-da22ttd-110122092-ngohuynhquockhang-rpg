@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://dhrnbl64t6vxx" path="res://assets/health_bar_under.png" id="3_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://bbwtmracii64p" path="res://assets/health_bar_progress.png" id="5_xwavj"]
 [ext_resource type="Script" uid="uid://b2swple1go7ko" path="res://scripts/system/combat/hurtbox.gd" id="6_ykhjb"]
+[ext_resource type="Script" uid="uid://dw7p628bxvoo6" path="res://scripts/system/combat/hitbox.gd" id="7_hypnf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hypnf"]
+radius = 5.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=2023807860 node_paths=PackedStringArray("sprite_2d", "animation_player", "health_bar", "navigation_agent_2d", "hurtbox", "hitbox") groups=["enemy"]]
 collision_mask = 2
@@ -35,11 +39,17 @@ texture_under = ExtResource("3_c4w8v")
 texture_over = ExtResource("3_4ra3w")
 texture_progress = ExtResource("5_xwavj")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1148016886]
+position = Vector2(0, -5)
+scale = Vector2(1.5, 1)
+shape = SubResource("CircleShape2D_hypnf")
+
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1660379758 groups=["enemy"]]
 script = ExtResource("6_ykhjb")
 
 [node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1036084278 groups=["enemy"]]
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=517447221 groups=["enemy"]]
+script = ExtResource("7_hypnf")
 
 [node name="HitboxCollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2089457300 groups=["enemy"]]

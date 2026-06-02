@@ -14,6 +14,7 @@ extends CharacterBody2D
 @export var arrow_spawn_point: Marker2D # Tham chiếu đến điểm spawn projectile cho tấn công tầm xa
 @export var arm_sprite_2d: Sprite2D
 @export var stats: CharacterStats
+@export var hurtbox: Hurtbox # Tham chiếu đến hurtbox để nhận damage từ enemy
 
 # Dodge settings
 @export var dodge_speed: float = 200.0 # Tốc độ dodge
@@ -33,6 +34,11 @@ var dodge_timer: float = 0.0 # Bộ đếm thời gian để theo dõi thời gi
 var dodge_cooldown_timer: float = 0.0 # Bộ đếm thời gian chờ giữa các dodge
 var dodge_direction: Vector2 = Vector2.ZERO # Vector hướng của dodge, được xác định khi bắt đầu dodge
 
+# Knockback state
+var knockback_direction: Vector2 = Vector2.ZERO # Vector hướng của knockback, được xác định khi bị tấn công
+var knockback_timer: float = 0.0 # Bộ đếm thời gian để theo dõi thời gian còn lại của knockback
+var knockback_duration: float = 0.0 # Thời gian knockback, được xác định khi bị tấn công
+
 func _ready() -> void:
 	GameManager.player = self
 
@@ -47,8 +53,12 @@ func _physics_process(delta: float) -> void:
 	if dodge_cooldown_timer > 0:
 		dodge_cooldown_timer -= delta
 	
+	# Xử lý knockback
+	if knockback_timer > 0:
+		knockback_timer -= delta
+		velocity = knockback_direction
 	# Xử lý dodge
-	if is_dodging:
+	elif is_dodging:
 		_update_dodge(delta)
 	else:
 		velocity = input_vector * speed
@@ -225,5 +235,14 @@ func spawn_ghost_effect():
 	tween.tween_callback(ghost.queue_free)
 
 
-func take_damage(amount: float):
-	print("Player takes damage")
+func take_damage(amount: float, source = null):
+	print("Player takes damage: ", amount)
+	if stats:
+		stats.current_health -= amount
+		stats.current_health = clampi(stats.current_health, 0, stats.max_health)
+		# TODO: Cập nhật UI thanh máu player ở đây nếu có
+
+func apply_knockback(direction: Vector2, force: float, duration: float):
+	knockback_direction = direction.normalized() * force
+	knockback_timer = duration
+	knockback_duration = duration

@@ -2,9 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://duplrhxctrtde" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dvilgeii024ul" path="res://scripts/entities/player/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://bbd4ervoh8c2q" path="res://scripts/data/character_stats.gd" id="2_03k2y"]
+[ext_resource type="Script" uid="uid://b2swple1go7ko" path="res://scripts/system/combat/hurtbox.gd" id="3_03k2y"]
 [ext_resource type="Script" uid="uid://dw7p628bxvoo6" path="res://scripts/system/combat/hitbox.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dpmik6npurs2a" path="res://assets/bow.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://cmvrptn5x6r0i" path="res://assets/hand_pulling_bow.png" id="4_dqkch"]
+
+[sub_resource type="Resource" id="Resource_olumy"]
+script = ExtResource("2_03k2y")
+metadata/_custom_type_script = "uid://bbd4ervoh8c2q"
 
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
@@ -2271,7 +2277,7 @@ _data = {
 &"slash_effect_up": SubResource("Animation_4r5pv")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=955801447 node_paths=PackedStringArray("camera_2d", "animation_player", "sprite_2d", "weapon_sprite_2d", "weapon_pivot", "effect_sprite_2d", "hitbox", "animation_weapon", "arrow_spawn_point", "arm_sprite_2d")]
+[node name="Player" type="CharacterBody2D" unique_id=955801447 node_paths=PackedStringArray("camera_2d", "animation_player", "sprite_2d", "weapon_sprite_2d", "weapon_pivot", "effect_sprite_2d", "hitbox", "animation_weapon", "arrow_spawn_point", "arm_sprite_2d", "hurtbox") groups=["player"]]
 collision_mask = 2
 script = ExtResource("1_g2els")
 camera_2d = NodePath("Camera2D")
@@ -2284,6 +2290,8 @@ hitbox = NodePath("WeaponVisual/WeaponPivot/Hitbox")
 animation_weapon = NodePath("WeaponVisual/AnimationWeapon")
 arrow_spawn_point = NodePath("WeaponVisual/WeaponPivot/ArrowSpawnPoint")
 arm_sprite_2d = NodePath("WeaponVisual/WeaponPivot/ArmSprite2D")
+stats = SubResource("Resource_olumy")
+hurtbox = NodePath("Hurtbox")
 dodge_cooldown = 0.01
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1986414232]
@@ -2300,7 +2308,14 @@ vframes = 13
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1667656743]
 libraries/ = SubResource("AnimationLibrary_fjrip")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=389324554]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741719572 groups=["player"]]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_g2els")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1643579426 groups=["player"]]
+script = ExtResource("3_03k2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=389324554 groups=["player"]]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_g2els")
 
@@ -2316,11 +2331,11 @@ texture = ExtResource("3_qlg0r")
 [node name="EffectSprite2D" type="Sprite2D" parent="WeaponVisual/WeaponPivot" unique_id=253292181]
 visible = false
 
-[node name="Hitbox" type="Area2D" parent="WeaponVisual/WeaponPivot" unique_id=1947067086]
+[node name="Hitbox" type="Area2D" parent="WeaponVisual/WeaponPivot" unique_id=1947067086 groups=["player"]]
 monitoring = false
 script = ExtResource("3_qhqgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponVisual/WeaponPivot/Hitbox" unique_id=524468356]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponVisual/WeaponPivot/Hitbox" unique_id=524468356 groups=["player"]]
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="AnimationHitbox" type="AnimationPlayer" parent="WeaponVisual/WeaponPivot/Hitbox" unique_id=1904638348]
