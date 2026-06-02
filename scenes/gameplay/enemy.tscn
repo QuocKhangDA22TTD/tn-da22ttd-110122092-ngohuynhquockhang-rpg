@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cla0oxxt3g4a1" path="res://assets/health_bar_over.png" id="3_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://dhrnbl64t6vxx" path="res://assets/health_bar_under.png" id="3_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://bbwtmracii64p" path="res://assets/health_bar_progress.png" id="5_xwavj"]
+[ext_resource type="Script" uid="uid://b2swple1go7ko" path="res://scripts/system/combat/hurtbox.gd" id="6_ykhjb"]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=2023807860 node_paths=PackedStringArray("sprite_2d", "animation_player", "health_bar", "navigation_agent_2d") groups=["enemy"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=2023807860 node_paths=PackedStringArray("sprite_2d", "animation_player", "health_bar", "navigation_agent_2d", "hurtbox", "hitbox") groups=["enemy"]]
 collision_mask = 2
 script = ExtResource("1_7p1mj")
 sprite_2d = NodePath("Sprite2D")
@@ -14,10 +15,10 @@ animation_player = NodePath("AnimationPlayer")
 health_bar = NodePath("HealthBar")
 damage_number_scene = ExtResource("2_md0e3")
 navigation_agent_2d = NodePath("NavigationAgent2D")
+hurtbox = NodePath("Hurtbox")
+hitbox = NodePath("Hitbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1751548273]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=32452900]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=168827063]
 
@@ -33,3 +34,12 @@ offset_bottom = 16.0
 texture_under = ExtResource("3_c4w8v")
 texture_over = ExtResource("3_4ra3w")
 texture_progress = ExtResource("5_xwavj")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1660379758 groups=["enemy"]]
+script = ExtResource("6_ykhjb")
+
+[node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1036084278 groups=["enemy"]]
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=517447221 groups=["enemy"]]
+
+[node name="HitboxCollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2089457300 groups=["enemy"]]
