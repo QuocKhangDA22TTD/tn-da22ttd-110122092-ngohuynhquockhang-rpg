@@ -1,10 +1,13 @@
 extends ChaseState
 class_name SlimeChaseState
 
+var attack_distance: float
+
 func enter(enemy):
 	# Lấy thông số từ EnemyData để sử dụng trong quá trình tuần tra
 	chase_distance = enemy.data.chase_distance
 	reaction_delay = enemy.data.reaction_delay
+	attack_distance = enemy.data.attack_distance
 
 	enemy.play_anim("chase") # Phát hoạt ảnh đuổi theo
 
@@ -12,6 +15,12 @@ func enter(enemy):
 
 func update(enemy, delta):
 	var distance_to_player = enemy.distance_to_player() # tính khoảng cách đến người chơi
+
+	if distance_to_player != null and distance_to_player < attack_distance:
+		var attack_state = enemy.get_state(AttackState)
+		if attack_state:
+			enemy.change_state(attack_state)
+		return
 
 	# Nếu người chơi nằm trong khoảng cách đuổi theo và timer đã hết, cập nhật mục tiêu đến vị trí người chơi
 	if distance_to_player != null and distance_to_player < chase_distance:
