@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://bpagpsmqqturb"]
 
+[ext_resource type="Script" uid="uid://0p544xr4gfcr" path="res://scripts/system/hud/hud.gd" id="1_8qguk"]
 [ext_resource type="Texture2D" uid="uid://dhrnbl64t6vxx" path="res://assets/health_bar_under.png" id="1_bo48s"]
 [ext_resource type="Texture2D" uid="uid://cla0oxxt3g4a1" path="res://assets/health_bar_over.png" id="2_8qguk"]
 [ext_resource type="Texture2D" uid="uid://bbwtmracii64p" path="res://assets/health_bar_progress.png" id="3_136eg"]
 
-[node name="HUD" type="Control" unique_id=136366360]
+[node name="HUD" type="Control" unique_id=136366360 node_paths=PackedStringArray("hp_bar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8qguk")
+hp_bar = NodePath("HpBar")
 
 [node name="HpBar" type="TextureProgressBar" parent="." unique_id=1188591005]
 layout_mode = 0
