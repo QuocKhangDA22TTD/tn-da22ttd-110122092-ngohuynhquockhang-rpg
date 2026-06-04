@@ -111,7 +111,6 @@ func spawn_projectile(user):
 
 	current_projectile.global_position = user.arrow_spawn_point.global_position
 	current_projectile.rotation = user.weapon_pivot.global_rotation
-	print("ok")
 	current_projectile.owner_entity = user.hurtbox # Gán hurtbox của user làm owner_entity để tránh va chạm với chính mình
 
 	ProjectileManager.add_child(current_projectile)
