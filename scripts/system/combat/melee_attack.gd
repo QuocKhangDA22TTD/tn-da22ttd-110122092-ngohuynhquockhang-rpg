@@ -4,12 +4,6 @@ class_name MeleeAttack
 var current_weapon_data: WeaponData # Lưu trữ WeaponData hiện tại để sử dụng trong hàm xử lý va chạm
 var is_executing: bool = false # Biến để kiểm tra xem đang trong quá trình thực hiện tấn công hay không
 var is_ready: bool = false # Biến để kiểm tra xem đã kết nối tín hiệu hit_hurtbox của hitbox hay chưa, tránh kết nối nhiều lần
-var dash_direction: Vector2 = Vector2.ZERO
-var dash_timer: float = 0.0
-var dash_duration: float = 0.3
-var knockback_timer: float = 0.0
-var knockback_duration: float = 0.15
-var knockback_direction: Vector2 = Vector2.ZERO
 
 func ensure_ready(user):
 	if is_ready:
@@ -33,8 +27,6 @@ func execute(user, weapon_data):
 	
 	# Tính vector từ nhân vật đến chuột
 	var direction = (mouse_pos - player_pos).normalized()
-
-	dash_timer = dash_duration
 	
 	# Xác định hướng tấn công dựa trên góc
 	var attack_direction: String
@@ -46,25 +38,21 @@ func execute(user, weapon_data):
 		attack_direction = "side"
 		user.sprite_2d.flip_h = false
 		user.weapon_pivot.scale.x = 1
-		dash_direction = Vector2.RIGHT
 	elif angle > PI/4 and angle < 3*PI/4:
 		# Hướng xuống
 		attack_direction = "down"
 		user.sprite_2d.flip_h = false
 		user.weapon_pivot.scale.x = 1
-		dash_direction = Vector2.DOWN
 	elif angle < -PI/4 and angle > -3*PI/4:
 		# Hướng lên
 		attack_direction = "up"
 		user.sprite_2d.flip_h = false
 		user.weapon_pivot.scale.x = 1
-		dash_direction = Vector2.UP
 	else:
 		# Hướng trái
 		attack_direction = "side"
 		user.sprite_2d.flip_h = true
 		user.weapon_pivot.scale.x = -1
-		dash_direction = Vector2.LEFT
 	
 	# Cập nhật vị trí hiệu ứng tấn công dựa trên weapon_data
 	user.effect_sprite_2d.offset = weapon_data.effect_offset
@@ -117,6 +105,3 @@ func _on_hitbox_hit_hurtbox(hurtbox: Area2D) -> void:
 	
 	if hurtbox.has_method("take_damage"):
 		hurtbox.take_damage(current_weapon_data.damage, GameManager.player)
-	
-	knockback_direction = -dash_direction * 300
-	knockback_timer = knockback_duration
