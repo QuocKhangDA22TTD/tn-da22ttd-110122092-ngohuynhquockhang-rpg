@@ -120,22 +120,3 @@ func _on_hitbox_hit_hurtbox(hurtbox: Area2D) -> void:
 	
 	knockback_direction = -dash_direction * 300
 	knockback_timer = knockback_duration
-
-
-func update_dash(user, delta: float):
-	if is_executing:
-		# Dash với easing
-		if dash_timer > 0:
-			var progress = 1.0 - (dash_timer / dash_duration)
-			var eased = ease(progress, -2.0)  # Tăng nhanh rồi chậm dần
-			var speed = 200 * (1.0 - eased)
-			user.global_position += dash_direction * speed * delta
-			dash_timer -= delta
-		
-		# Knockback với easing
-		if knockback_timer > 0:
-			var progress = 1.0 - (knockback_timer / knockback_duration)
-			var eased = ease(progress, -2.0)
-			var speed = 300 * (1.0 - eased)
-			user.global_position += knockback_direction.normalized() * speed * delta
-			knockback_timer -= delta

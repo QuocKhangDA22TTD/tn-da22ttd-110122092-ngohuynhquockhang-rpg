@@ -64,9 +64,6 @@ func _physics_process(delta: float) -> void:
 		velocity = input_vector * speed
 	
 	move_and_slide()
-
-	if animation_player.current_animation.begins_with("melee_attack"):
-		current_weapon.attack_behavior.update_dash(self, delta)
 	
 	_handle_attack_input()
 	_handle_dodge_input()
