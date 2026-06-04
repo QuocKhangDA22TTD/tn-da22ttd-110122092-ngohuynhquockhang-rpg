@@ -1,7 +1,6 @@
 # Script điều khiển nhân vật người chơi
 extends CharacterBody2D
 
-@export var speed: float = 80.0 # Tốc độ di chuyển của nhân vật
 @export var camera_2d: Camera2D # Tham chiếu đến camera theo dõi nhân vật
 @export var animation_player: AnimationPlayer # Tham chiếu đến animation player để phát hoạt ảnh
 @export var sprite_2d: Sprite2D # Tham chiếu đến sprite của nhân vật
@@ -25,7 +24,7 @@ extends CharacterBody2D
 var last_direction: String = "down"
 # Vector chứa input từ bàn phím
 var input_vector := Vector2.ZERO
-# Hậu tố hoạt ảnh dựa trên loại vũ khí 
+# Hậu tố hoạt ảnh dựa trên loại vũ khí
 var animation_suffix: String = ""
 
 # Dodge state
@@ -61,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	elif is_dodging:
 		_update_dodge(delta)
 	else:
-		velocity = input_vector * speed
+		velocity = input_vector * stats.speed
 	
 	move_and_slide()
 	
