@@ -1504,7 +1504,7 @@ tracks/1/keys = {
 tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationEffect")
+tracks/2/path = NodePath("AnimationWeaponEffect")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1636,7 +1636,7 @@ tracks/1/keys = {
 tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationEffect")
+tracks/2/path = NodePath("AnimationWeaponEffect")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1768,7 +1768,7 @@ tracks/1/keys = {
 tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationEffect")
+tracks/2/path = NodePath("AnimationWeaponEffect")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -2350,5 +2350,7 @@ texture = ExtResource("4_dqkch")
 [node name="AnimationWeapon" type="AnimationPlayer" parent="WeaponVisual" unique_id=1054018421]
 libraries/ = SubResource("AnimationLibrary_f1ej7")
 
-[node name="AnimationEffect" type="AnimationPlayer" parent="WeaponVisual" unique_id=360119740]
+[node name="AnimationWeaponEffect" type="AnimationPlayer" parent="WeaponVisual" unique_id=360119740]
 libraries/ = SubResource("AnimationLibrary_qfm1y")
+
+[node name="AnimationBodyEffect" type="AnimationPlayer" parent="." unique_id=1631053629]
