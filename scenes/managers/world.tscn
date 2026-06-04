@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bqys23112x6ok" path="res://data/items/potion.tres" id="8_lakw3"]
 [ext_resource type="PackedScene" uid="uid://c06klg74cglxk" path="res://scenes/ui/inventory_ui.tscn" id="9_pm21f"]
 [ext_resource type="PackedScene" uid="uid://csoqgl1rfxiss" path="res://scenes/ui/hotbar_ui.tscn" id="10_2lf6f"]
+[ext_resource type="PackedScene" uid="uid://bpagpsmqqturb" path="res://scenes/ui/hud.tscn" id="10_t2vd6"]
 [ext_resource type="PackedScene" uid="uid://bugdyovlrdlon" path="res://scenes/managers/enemy_spawner.tscn" id="11_7iits"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_w7kh3"]
@@ -251,6 +252,8 @@ item = ExtResource("8_lakw3")
 [node name="InventoryUI" parent="UI" unique_id=1898595049 instance=ExtResource("9_pm21f")]
 
 [node name="HotbarUI" parent="UI" unique_id=1524678013 instance=ExtResource("10_2lf6f")]
+
+[node name="HUD" parent="UI" unique_id=136366360 instance=ExtResource("10_t2vd6")]
 
 [node name="EnemySpawner" parent="." unique_id=166305411 instance=ExtResource("11_7iits")]
 position = Vector2(470, 255)
