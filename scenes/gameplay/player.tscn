@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b2swple1go7ko" path="res://scripts/system/combat/hurtbox.gd" id="3_03k2y"]
 [ext_resource type="Script" uid="uid://dw7p628bxvoo6" path="res://scripts/system/combat/hitbox.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cmvrptn5x6r0i" path="res://assets/hand_pulling_bow.png" id="4_dqkch"]
+[ext_resource type="Shader" uid="uid://d26p1k8rwchag" path="res://hit_effect.gdshader" id="7_olumy"]
 
 [sub_resource type="Resource" id="Resource_olumy"]
 script = ExtResource("2_03k2y")
@@ -2276,7 +2277,80 @@ _data = {
 &"slash_effect_up": SubResource("Animation_4r5pv")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=955801447 node_paths=PackedStringArray("camera_2d", "animation_player", "sprite_2d", "weapon_sprite_2d", "weapon_pivot", "effect_sprite_2d", "hitbox", "animation_weapon", "arrow_spawn_point", "arm_sprite_2d", "hurtbox") groups=["player"]]
+[sub_resource type="Animation" id="Animation_olumy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xxmvi"]
+shader = ExtResource("7_olumy")
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+shader_parameter/alpha_boost = 1.0
+shader_parameter/opacity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_olumy"]
+shader = ExtResource("7_olumy")
+shader_parameter/tint_color = Color(1, 1, 1, 0)
+shader_parameter/alpha_boost = 1.0
+shader_parameter/opacity = 0.0
+
+[sub_resource type="Animation" id="Animation_xwg0q"]
+resource_name = "hit_flash"
+length = 0.71
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"update": 1,
+"values": [SubResource("ShaderMaterial_xxmvi"), null, SubResource("ShaderMaterial_olumy"), null, SubResource("ShaderMaterial_olumy"), null, SubResource("ShaderMaterial_olumy"), null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.71),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efdaw"]
+_data = {
+&"RESET": SubResource("Animation_olumy"),
+&"hit_flash": SubResource("Animation_xwg0q")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=955801447 node_paths=PackedStringArray("camera_2d", "animation_player", "sprite_2d", "weapon_sprite_2d", "weapon_pivot", "effect_sprite_2d", "hitbox", "animation_weapon", "animation_body_effect", "arrow_spawn_point", "arm_sprite_2d", "hurtbox") groups=["player"]]
 collision_mask = 2
 script = ExtResource("1_g2els")
 camera_2d = NodePath("Camera2D")
@@ -2287,6 +2361,7 @@ weapon_pivot = NodePath("WeaponVisual/WeaponPivot")
 effect_sprite_2d = NodePath("WeaponVisual/WeaponPivot/EffectSprite2D")
 hitbox = NodePath("WeaponVisual/WeaponPivot/Hitbox")
 animation_weapon = NodePath("WeaponVisual/AnimationWeapon")
+animation_body_effect = NodePath("AnimationBodyEffect")
 arrow_spawn_point = NodePath("WeaponVisual/WeaponPivot/ArrowSpawnPoint")
 arm_sprite_2d = NodePath("WeaponVisual/WeaponPivot/ArmSprite2D")
 stats = SubResource("Resource_olumy")
@@ -2354,3 +2429,4 @@ libraries/ = SubResource("AnimationLibrary_f1ej7")
 libraries/ = SubResource("AnimationLibrary_qfm1y")
 
 [node name="AnimationBodyEffect" type="AnimationPlayer" parent="." unique_id=1631053629]
+libraries/ = SubResource("AnimationLibrary_efdaw")

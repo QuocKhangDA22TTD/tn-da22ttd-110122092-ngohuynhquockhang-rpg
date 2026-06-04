@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var effect_sprite_2d: Sprite2D # Tham chiếu đến sprite hiệu ứng tấn công
 @export var hitbox: Hitbox # Tham chiếu đến hitbox để xử lý va chạm tấn công
 @export var animation_weapon: AnimationPlayer # Tham chiếu đến animation player để phát hoạt ảnh vũ khí
+@export var animation_body_effect: AnimationPlayer
 @export var arrow_spawn_point: Marker2D # Tham chiếu đến điểm spawn projectile cho tấn công tầm xa
 @export var arm_sprite_2d: Sprite2D
 @export var stats: CharacterStats
@@ -236,6 +237,7 @@ func take_damage(amount: float, source = null):
 	if stats:
 		stats.current_health -= amount
 		stats.current_health = clampi(stats.current_health, 0, stats.max_health)
+		animation_body_effect.play("hit_flash")
 		# TODO: Cập nhật UI thanh máu player ở đây nếu có
 
 func apply_knockback(direction: Vector2, force: float, duration: float):
