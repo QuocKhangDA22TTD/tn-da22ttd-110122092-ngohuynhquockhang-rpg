@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bpagpsmqqturb"]
 
 [ext_resource type="Script" uid="uid://0p544xr4gfcr" path="res://scripts/system/hud/hud.gd" id="1_8qguk"]
-[ext_resource type="Texture2D" uid="uid://dhrnbl64t6vxx" path="res://assets/health_bar_under.png" id="1_bo48s"]
-[ext_resource type="Texture2D" uid="uid://cla0oxxt3g4a1" path="res://assets/health_bar_over.png" id="2_8qguk"]
-[ext_resource type="Texture2D" uid="uid://bbwtmracii64p" path="res://assets/health_bar_progress.png" id="3_136eg"]
+[ext_resource type="Texture2D" uid="uid://8rxv02yhic67" path="res://assets/hud_health_bar_under.png" id="2_8qguk"]
+[ext_resource type="Texture2D" uid="uid://cqcoufhy0ok8w" path="res://assets/hud_health_bar_over.png" id="3_136eg"]
+[ext_resource type="Texture2D" uid="uid://c5f1dyfdw5si3" path="res://assets/hud_health_bar_progress.png" id="4_oj5la"]
 
 [node name="HUD" type="Control" unique_id=136366360 node_paths=PackedStringArray("hp_bar")]
 layout_mode = 3
@@ -16,10 +16,11 @@ script = ExtResource("1_8qguk")
 hp_bar = NodePath("HpBar")
 
 [node name="HpBar" type="TextureProgressBar" parent="." unique_id=1188591005]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(8, 8)
-texture_under = ExtResource("1_bo48s")
-texture_over = ExtResource("2_8qguk")
-texture_progress = ExtResource("3_136eg")
+layout_mode = 1
+offset_right = 90.0
+offset_bottom = 19.0
+scale = Vector2(4, 4)
+texture_under = ExtResource("2_8qguk")
+texture_over = ExtResource("3_136eg")
+texture_progress = ExtResource("4_oj5la")
+texture_progress_offset = Vector2(23, 7)
