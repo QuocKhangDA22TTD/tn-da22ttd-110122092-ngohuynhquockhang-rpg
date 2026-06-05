@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MagicWeaponData" format=3 uid="uid://dgs0vm8i0bun0"]
+
+[ext_resource type="Script" uid="uid://xqt8oh76voki" path="res://scripts/data/magic_weapon_data.gd" id="1_j34uq"]
+[ext_resource type="Texture2D" uid="uid://kduhty145bju" path="res://assets/sprites/staff.png" id="1_seshs"]
+
+[resource]
+script = ExtResource("1_j34uq")
+weapon_texture = ExtResource("1_seshs")
+id = "staff_of_fire"
+name = "staff_of_fire"
+icon = ExtResource("1_seshs")
+max_stack = 1
+type = 2
+metadata/_custom_type_script = "uid://xqt8oh76voki"
