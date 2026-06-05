@@ -2,15 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://duplrhxctrtde" path="res://assets/sprite_sheets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dvilgeii024ul" path="res://scripts/entities/player/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://bbd4ervoh8c2q" path="res://scripts/data/character_stats.gd" id="2_03k2y"]
+[ext_resource type="Resource" uid="uid://ds4xf584td4g5" path="res://data/entities/player/player.tres" id="2_olumy"]
 [ext_resource type="Script" uid="uid://b2swple1go7ko" path="res://scripts/system/combat/hurtbox.gd" id="3_03k2y"]
 [ext_resource type="Script" uid="uid://dw7p628bxvoo6" path="res://scripts/system/combat/hitbox.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cmvrptn5x6r0i" path="res://assets/sprite_sheets/hand_pulling_bow.png" id="4_dqkch"]
 [ext_resource type="Shader" uid="uid://d26p1k8rwchag" path="res://hit_effect.gdshader" id="7_olumy"]
-
-[sub_resource type="Resource" id="Resource_olumy"]
-script = ExtResource("2_03k2y")
-metadata/_custom_type_script = "uid://bbd4ervoh8c2q"
 
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
@@ -2340,7 +2336,7 @@ animation_weapon = NodePath("WeaponVisual/AnimationWeapon")
 animation_body_effect = NodePath("AnimationBodyEffect")
 arrow_spawn_point = NodePath("WeaponVisual/WeaponPivot/ArrowSpawnPoint")
 arm_sprite_2d = NodePath("WeaponVisual/WeaponPivot/ArmSprite2D")
-stats = SubResource("Resource_olumy")
+stats = ExtResource("2_olumy")
 hurtbox = NodePath("Hurtbox")
 dodge_cooldown = 0.01
 
