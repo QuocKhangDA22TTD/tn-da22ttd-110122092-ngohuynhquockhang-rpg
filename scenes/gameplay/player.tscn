@@ -368,20 +368,20 @@ _data = {
 &"RESET": SubResource("Animation_g2els"),
 &"dodge_side": SubResource("Animation_487ah"),
 &"idle_down": SubResource("Animation_qhqgy"),
-&"idle_down_bow": SubResource("Animation_31cv2"),
+&"idle_down_ranged": SubResource("Animation_31cv2"),
 &"idle_side": SubResource("Animation_dqkch"),
-&"idle_side_bow": SubResource("Animation_pf23h"),
+&"idle_side_ranged": SubResource("Animation_pf23h"),
 &"idle_up": SubResource("Animation_tuyoq"),
-&"idle_up_bow": SubResource("Animation_dt7fs"),
+&"idle_up_ranged": SubResource("Animation_dt7fs"),
 &"melee_attack_down": SubResource("Animation_y4r1p"),
 &"melee_attack_side": SubResource("Animation_ur7pv"),
 &"melee_attack_up": SubResource("Animation_d2wvv"),
 &"move_down": SubResource("Animation_fjrip"),
-&"move_down_bow": SubResource("Animation_wqfne"),
+&"move_down_ranged": SubResource("Animation_wqfne"),
 &"move_side": SubResource("Animation_qlg0r"),
-&"move_side_bow": SubResource("Animation_wnwbv"),
+&"move_side_ranged": SubResource("Animation_wnwbv"),
 &"move_up": SubResource("Animation_smehm"),
-&"move_up_bow": SubResource("Animation_gl8cc")
+&"move_up_ranged": SubResource("Animation_gl8cc")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
