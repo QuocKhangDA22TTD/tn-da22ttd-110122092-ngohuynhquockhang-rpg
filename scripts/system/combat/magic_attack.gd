@@ -46,6 +46,6 @@ func update_magic_aim(user):
 
 	if direction != Vector2.ZERO:
 		if direction.x < 0:
-			user.arm_sprite_2d.flip_v = true
+			user.arm_sprite_2d.scale.y = -1.0
 		else:
-			user.arm_sprite_2d.flip_v = false
+			user.arm_sprite_2d.scale.y = 1.0
