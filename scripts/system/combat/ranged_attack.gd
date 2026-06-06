@@ -121,7 +121,7 @@ func spawn_projectile(user):
 
 
 func fire_projectile(user):
-aa	if not current_projectile:
+	if not current_projectile:
 		return
 
 	if current_projectile.direction == Vector2.ZERO:
