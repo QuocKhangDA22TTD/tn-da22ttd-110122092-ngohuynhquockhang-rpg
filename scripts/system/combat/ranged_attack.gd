@@ -36,15 +36,15 @@ func handle_input(user, weapon_data, input_state):
 		start_draw(user)
 
 	# pressed để cập nhật vị trí và hướng của projectile trong khi kéo dây cung
-	elif input_state.pressed and is_drawing:
+	if input_state.pressed and is_drawing:
 		update_draw(user)
 
-	# just_released để bắn tên và kết thúc quá trình tấn công
-	elif input_state.just_released and is_drawing:
+	# just_eased để bắn tên và kết thúc quá trình tấn công
+	if input_state.just_released and is_drawing:
 		release_attack(user)
 
 	# Nếu không có input nào và không đang tấn công, chuyển về trạng thái idle của cung
-	elif not is_attacking():
+	if not is_attacking():
 		bow_idle(user)
 
 
