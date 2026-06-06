@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	_handle_dodge_input()
 
 	# Cập nhật last_direction theo chuột nếu cầm ranged weapon
-	if current_weapon and current_weapon is RangedWeaponData and current_weapon is MagicWeaponData:
+	if current_weapon and current_weapon is RangedWeaponData or current_weapon is MagicWeaponData:
 		_update_direction_from_mouse()
 	
 	_update_animation_and_direction()
@@ -117,7 +117,7 @@ func _update_animation_and_direction():
 
 	if input_vector != Vector2.ZERO:
 		# Nếu cầm ranged weapon, phát animation move dựa trên last_direction (từ chuột)
-		if current_weapon and current_weapon is RangedWeaponData and current_weapon is MagicWeaponData:
+		if current_weapon and current_weapon is RangedWeaponData or current_weapon is MagicWeaponData:
 			match last_direction:
 				"side":   animation_player.play("move_side" + animation_suffix)
 				"up":     animation_player.play("move_up" + animation_suffix)
