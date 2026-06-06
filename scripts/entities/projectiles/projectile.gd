@@ -2,22 +2,22 @@ extends Area2D
 
 @export var exist_timer = 0.0
 @export var max_exist_time = 3.0
+@export var speed: float = 300.0
 
 var owner_entity: Node = null # Biến để lưu reference đến entity sở hữu viên đạn, dùng để tránh va chạm với chính mình
-var speed: float = 0.0
-var direction: Vector2 = Vector2.ZERO
+var direction: Vector2 = Vector2.ZERO # Hướng di chuyển của viên đạn
 
 func _ready() -> void:
 	if not area_entered.is_connected(_on_area_entered):
 		area_entered.connect(_on_area_entered)
 
 func _physics_process(delta: float) -> void:
-	# Di chuyển projectile về phía trước
-	var velocity = direction * speed
-	position += velocity * delta
 
 	if rotation != direction.angle():
-		rotation = direction.angle()  # Xoay projectile theo hướng di chuyển
+		rotation = direction.angle() # Xoay projectile theo hướng di chuyển
+	
+	var velocity = direction * speed # Tính toán vận tốc dựa trên hướng và tốc độ
+	position += velocity * delta # Cập nhật vị trí của viên đạn
 	
 	exist_timer += delta
 
