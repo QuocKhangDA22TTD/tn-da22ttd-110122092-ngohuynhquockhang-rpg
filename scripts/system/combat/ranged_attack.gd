@@ -120,7 +120,6 @@ func fire_projectile(user):
 	if not current_projectile:
 		return
 
-	current_projectile.speed = 400.0
 	current_projectile.direction = Vector2.RIGHT.rotated(
 		user.weapon_pivot.global_rotation
 	)
