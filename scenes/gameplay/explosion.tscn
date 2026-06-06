@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bjiggoxkn17lj"]
 
+[ext_resource type="Script" uid="uid://cov04umblj4kd" path="res://scripts/entities/effects/explosion.gd" id="1_c54tu"]
 [ext_resource type="Texture2D" uid="uid://cath4sc2vfyye" path="res://assets/sprite_sheets/explosion.png" id="1_hnxdc"]
 
 [sub_resource type="Animation" id="Animation_hnxdc"]
@@ -187,6 +188,7 @@ _data = {
 }
 
 [node name="Explosion" type="Area2D" unique_id=2140574274]
+script = ExtResource("1_c54tu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1154336461]
 
