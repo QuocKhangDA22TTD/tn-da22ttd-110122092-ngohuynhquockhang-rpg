@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://5w5w02uriolh" path="res://assets/ui/hud_mana_bar_over.png" id="6_h022r"]
 [ext_resource type="Texture2D" uid="uid://dk1dyaraeeesu" path="res://assets/ui/hud_mana_bar_progress.png" id="7_4jqwt"]
 
-[node name="HUD" type="Control" unique_id=136366360 node_paths=PackedStringArray("hp_bar")]
+[node name="HUD" type="Control" unique_id=136366360 node_paths=PackedStringArray("hp_bar", "mana_bar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,12 +17,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8qguk")
 hp_bar = NodePath("VBoxContainer/HpBar")
+mana_bar = NodePath("VBoxContainer/ManaBar")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=36655943]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 
 [node name="HpBar" type="TextureProgressBar" parent="VBoxContainer" unique_id=1188591005]
 layout_mode = 2
