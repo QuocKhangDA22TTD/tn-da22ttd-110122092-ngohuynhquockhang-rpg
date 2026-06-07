@@ -10,8 +10,8 @@ func ensure_ready(user):
 		return
 	
 	var hitbox = user.hitbox
-	if not hitbox.hit_hurtbox.is_connected(_on_hitbox_hit_hurtbox):
-		hitbox.hit_hurtbox.connect(_on_hitbox_hit_hurtbox) # Kết nối tín hiệu hit_hurtbox của hitbox với hàm xử lý va chạm
+	if not hitbox.hit_hurtbox.is_connected(_on_hitbox_hit):
+		hitbox.hit_hurtbox.connect(_on_hitbox_hit) # Kết nối tín hiệu hit_hurtbox của hitbox với hàm xử lý va chạm
 
 	is_ready = true
 
@@ -99,9 +99,8 @@ func is_attacking() -> bool:
 
 
 # Hàm xử lý khi Hitbox va chạm với Hurtbox
-func _on_hitbox_hit_hurtbox(hurtbox: Area2D) -> void:
+func _on_hitbox_hit(hurtbox: Area2D) -> void:
 	if hurtbox.is_in_group("player_hurtbox"):
 		return # Bỏ qua va chạm với player
 	
-	if hurtbox.has_method("take_damage"):
-		hurtbox.take_damage(current_weapon_data.damage, GameManager.player)
+	hurtbox._on_hitbox_hit(current_weapon_data.damage, GameManager.player)
