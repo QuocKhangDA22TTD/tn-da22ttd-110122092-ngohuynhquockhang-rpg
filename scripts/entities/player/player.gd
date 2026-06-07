@@ -254,4 +254,14 @@ func take_damage(amount: float, source = null):
 func apply_knockback(direction: Vector2, force: float, duration: float):
 	knockback_direction = direction.normalized() * force
 	knockback_timer = duration
-	knockback_duration = duration
+	knockback_duration = duration # 
+
+
+func use_mana(amount: float) -> bool:
+	if stats and stats.current_mana >= amount:
+		stats.current_mana -= amount
+		stats.current_mana = clampi(stats.current_mana, 0, stats.max_mana) # Đảm bảo mana không vượt quá giới hạn
+		
+		return true # Báo sử dụng mana thành công
+
+	return false # Báo sử dụng mana thất bại (không đủ mana hoặc stats không tồn tại)
