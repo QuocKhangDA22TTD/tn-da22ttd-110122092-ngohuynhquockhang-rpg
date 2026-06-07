@@ -51,7 +51,7 @@ script = ExtResource("6_ykhjb")
 
 [node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1036084278 groups=["enemy"]]
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=517447221 groups=["enemy"]]
+[node name="Hitbox" type="Area2D" parent="." unique_id=517447221]
 script = ExtResource("7_hypnf")
 
-[node name="HitboxCollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2089457300 groups=["enemy"]]
+[node name="HitboxCollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2089457300]
