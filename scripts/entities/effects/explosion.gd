@@ -12,7 +12,6 @@ func _ready() -> void:
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
-	print("area: ", area)
 	# Tránh double damage
 	if area == owner_entity or area in hit_entities:
 		return
