@@ -1,15 +1,26 @@
 extends Area2D
 class_name Hurtbox
 
-var owner_entity: CharacterBody2D
+var owner_entity: Node # Biến để lưu reference đến entity sở hữu hurtbox
 
 func _ready() -> void:
 	owner_entity = get_parent()
-	# Thêm vào group player_hurtbox nếu parent là player
-	if owner_entity.name == "Player" or owner_entity.is_in_group("player"):
+	
+	# Thêm vào group dựa trên parent
+	if owner_entity.is_in_group("player"):
 		add_to_group("player_hurtbox")
+	elif owner_entity.is_in_group("enemy"):
+		add_to_group("enemy_hurtbox")
 
-# Hàm này sẽ được gọi bởi hitbox khi va chạm với hurtbox, truyền vào lượng sát thương và nguồn gây sát thương
-func take_damage(amount: float, source = null) -> void:
+# Nhận damage từ Hitbox signal
+func _on_hitbox_hit(damage: float, source: Node) -> void:
+	apply_damage(damage, source)
+
+# Nhận damage trực tiếp từ các nguồn khác (ví dụ: projectile, explosion)
+func take_damage(damage: float, source: Node = null) -> void:
+	apply_damage(damage, source)
+
+# Logic để áp dụng damage vào entity sở hữu hurtbox
+func apply_damage(damage: float, source: Node) -> void:
 	if owner_entity and owner_entity.has_method("take_damage"):
-		owner_entity.take_damage(amount, source)
+		owner_entity.take_damage(damage, source)
