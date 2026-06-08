@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bpagpsmqqturb" path="res://scenes/ui/hud.tscn" id="10_00y83"]
 [ext_resource type="PackedScene" uid="uid://c06klg74cglxk" path="res://scenes/ui/inventory_ui.tscn" id="11_pe34w"]
 [ext_resource type="PackedScene" uid="uid://bugdyovlrdlon" path="res://scenes/managers/enemy_spawner.tscn" id="12_78tue"]
+[ext_resource type="Script" uid="uid://csdvij8aklsaf" path="res://scripts/core/input_handler.gd" id="13_ll2y6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_w7kh3"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -200,9 +201,11 @@ physics_layer_0/collision_layer = 3
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ba4lm")
 
-[node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container")]
+[node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui")]
 script = ExtResource("1_upjpn")
 enemies_container = NodePath("Entities/Enemies")
+input_handler = NodePath("InputHandler")
+hotbar_ui = NodePath("UI/HotbarUI")
 
 [node name="Maps" type="Node2D" parent="." unique_id=83877726]
 
@@ -258,3 +261,6 @@ item = ExtResource("8_p6fov")
 
 [node name="EnemySpawner" parent="." unique_id=166305411 instance=ExtResource("12_78tue")]
 position = Vector2(470, 255)
+
+[node name="InputHandler" type="Node2D" parent="." unique_id=44333829]
+script = ExtResource("13_ll2y6")
