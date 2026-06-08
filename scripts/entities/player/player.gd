@@ -148,9 +148,9 @@ func _handle_attack_input():
 		return  # Không có vũ khí hoặc vũ khí không có hành vi tấn công, bỏ qua xử lý tấn công
 		
 	var input_state = AttackInputState.new()
-	input_state.pressed = Input.is_action_pressed("attack")
-	input_state.just_pressed = Input.is_action_just_pressed("attack")
-	input_state.just_released = Input.is_action_just_released("attack")
+	input_state.pressed = Input.is_action_pressed("primary_action")
+	input_state.just_pressed = Input.is_action_just_pressed("primary_action")
+	input_state.just_released = Input.is_action_just_released("primary_action")
 	
 	current_weapon.attack_behavior.handle_input(self, current_weapon, input_state)
 
