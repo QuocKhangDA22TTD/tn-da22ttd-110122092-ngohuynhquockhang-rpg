@@ -89,12 +89,19 @@ func use_selected_item():
 			unequip_weapon()
 
 # Sử dụng vật phẩm tiêu hao
-func use_consumable(slot: Slot):
-	print("Đã sử dụng: ", slot.item.name)
-	# TODO: Thêm logic hồi máu, mana, buff...
+func use_consumable(slot: Slot) -> bool:
+	var consumable = slot.item
+	if not consumable or not consumable.effect:
+		return false
 	
-	# Giảm số lượng
-	InventoryManager.remove_item(selected_slot_index, 1)
+	var success = consumable.effect.apply_effect(GameManager.player)
+	if success:
+		print("Đã sử dụng: ", consumable.name)
+		InventoryManager.remove_item(selected_slot_index, 1)
+		return true
+	
+	return false
+
 
 # Trang bị vũ khí
 func equip_weapon(slot: Slot):
