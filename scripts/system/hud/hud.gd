@@ -2,6 +2,7 @@ extends Control
 
 @export var hp_bar: TextureProgressBar # Biến để lưu trữ tham chiếu đến TextureProgressBar hiển thị HP của người chơi
 @export var mana_bar: TextureProgressBar
+@export var stamina_bar: TextureProgressBar
 
 var player_stats: CharacterStats = null # Biến để lưu trữ tham chiếu đến CharacterStats của người chơi
 
@@ -20,10 +21,15 @@ func _ready() -> void:
 		mana_bar.max_value = player_stats.max_mana
 		mana_bar.value = player_stats.current_mana
 
+		# Khởi tạo giá trị mana ban đầu cho mana_bar
+		stamina_bar.max_value = player_stats.max_stamina
+		stamina_bar.value = player_stats.current_stamina
+
 	if player_stats:
-		# Kết nối tín hiệu changed của CharacterStats để cập nhật thanh HP khi máu thay đổi
+		# Kết nối tín hiệu changed của CharacterStats để cập các chỉ số và thay đổi giao diện
 		player_stats.changed.connect(_on_health_changed)
 		player_stats.changed.connect(_on_mana_changed)
+		player_stats.changed.connect(_on_stamina_changed)
 
 
 func _on_health_changed() -> void:
@@ -34,3 +40,8 @@ func _on_health_changed() -> void:
 func _on_mana_changed() -> void:
 	if player_stats:
 		mana_bar.value = player_stats.current_mana # Cập nhật giá trị của thanh mana
+
+
+func _on_stamina_changed() -> void:
+	if player_stats:
+		stamina_bar.value = player_stats.current_stamina # Cập nhật giá trị của thanh stamina
