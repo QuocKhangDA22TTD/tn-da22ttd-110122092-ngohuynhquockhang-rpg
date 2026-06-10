@@ -76,7 +76,13 @@ func highlight_selected_slot():
 func _on_inventory_changed():
 	var selected_slot = InventoryManager.slots[selected_slot_index]
 	
+	# Kiểm tra slot rỗng trước khi truy cập item
 	if selected_slot.is_empty():
 		GameManager.player.unequip_weapon()
+		return
+	
+	# Chỉ kiểm tra loại item nếu slot không rỗng
+	if selected_slot.item.type == ItemData.ItemType.WEAPON:
+		GameManager.player.equip_weapon(selected_slot)
 	else:
-		GameManager.player.hotbar_execute_action()
+		GameManager.player.unequip_weapon()
