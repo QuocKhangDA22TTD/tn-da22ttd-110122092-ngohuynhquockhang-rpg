@@ -13,6 +13,10 @@ func enter(enemy):
 		print("kẻ địch %s bị đánh trúng bởi %s" % [enemy.data.display_name, damage_source])
 		apply_knockback(enemy, damage_source.global_position)
 
+	# Ngắt kết nối trước để tránh lỗi nếu enter được gọi nhiều lần
+	if enemy.animation_player.animation_finished.is_connected(_on_anim_finished):
+		enemy.animation_player.animation_finished.disconnect(_on_anim_finished)
+	
 	# Lắng nghe animation kết thúc (chỉ 1 lần)
 	enemy.animation_player.animation_finished.connect(_on_anim_finished.bind(enemy), CONNECT_ONE_SHOT)
 
