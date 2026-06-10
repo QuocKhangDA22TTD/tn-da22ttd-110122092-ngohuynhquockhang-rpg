@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://bqys23112x6ok"]
 
 [ext_resource type="Texture2D" uid="uid://gvvedyqwsjql" path="res://assets/sprites/potion.png" id="1_dvv3t"]
-[ext_resource type="Resource" uid="uid://sg0csp7s38qi" path="res://data/effects/health_potion_effect.tres" id="1_q6ixs"]
+[ext_resource type="Resource" uid="uid://sg0csp7s38qi" path="res://data/effects/healing_effect.tres" id="1_q6ixs"]
 [ext_resource type="Script" uid="uid://bm7vx603y8foy" path="res://scripts/data/consumable_data.gd" id="2_q6ixs"]
 
 [resource]
