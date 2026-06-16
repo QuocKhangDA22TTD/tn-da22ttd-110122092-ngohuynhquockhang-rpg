@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6axrt2dvdmd5"]
 
-[ext_resource type="Script" uid="uid://cnfyd681trdxe" path="res://scripts/merchant.gd" id="1_liswg"]
+[ext_resource type="Script" uid="uid://cnfyd681trdxe" path="res://scripts/npcs/merchant.gd" id="1_liswg"]
 [ext_resource type="Texture2D" uid="uid://rhici3h7b87r" path="res://assets/merchant.png" id="2_liswg"]
 [ext_resource type="PackedScene" uid="uid://cr77uo0u0h7nd" path="res://scenes/gameplay/interaction_area.tscn" id="3_fqtx1"]
 

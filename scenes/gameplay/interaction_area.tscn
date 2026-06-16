@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cr77uo0u0h7nd"]
 
-[ext_resource type="Script" uid="uid://bb1u8ynn05yp" path="res://scripts/interaction_area.gd" id="1_2d73r"]
+[ext_resource type="Script" uid="uid://bb1u8ynn05yp" path="res://scripts/npcs/interaction_area.gd" id="1_2d73r"]
 [ext_resource type="PackedScene" uid="uid://btvqtbd2r2e32" path="res://scenes/gameplay/interactable_ui.tscn" id="2_jrrgp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2yxo"]
