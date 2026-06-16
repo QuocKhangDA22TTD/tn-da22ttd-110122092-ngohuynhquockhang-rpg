@@ -1,24 +1,34 @@
 [gd_scene format=3 uid="uid://c6axrt2dvdmd5"]
 
-[ext_resource type="Texture2D" path="res://assets/salesman.png" id="1_11e3n"]
+[ext_resource type="Script" uid="uid://cnfyd681trdxe" path="res://scripts/merchant.gd" id="1_liswg"]
+[ext_resource type="Texture2D" uid="uid://rhici3h7b87r" path="res://assets/merchant.png" id="2_liswg"]
+[ext_resource type="PackedScene" uid="uid://cr77uo0u0h7nd" path="res://scenes/gameplay/interaction_area.tscn" id="3_fqtx1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ly2y3"]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wt4y8"]
-radius = 9.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_liswg"]
+radius = 24.0
 
 [node name="Merchant" type="CharacterBody2D" unique_id=692388093]
+script = ExtResource("1_liswg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=695540957]
-texture = ExtResource("1_11e3n")
+texture = ExtResource("2_liswg")
 offset = Vector2(0, -11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768808819]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_ly2y3")
 
-[node name="InteractionArea" type="Area2D" parent="." unique_id=2065174846]
+[node name="InteractionArea" parent="." unique_id=665103888 instance=ExtResource("3_fqtx1")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=2138576464]
-shape = SubResource("CircleShape2D_wt4y8")
+[node name="CollisionShape2D" parent="InteractionArea" index="0" unique_id=360320098]
+shape = SubResource("CircleShape2D_liswg")
+
+[node name="InteractableUI" parent="InteractionArea" index="1" unique_id=1426555862]
+position = Vector2(0, -49)
+
+[connection signal="on_interact" from="InteractionArea" to="." method="_on_interaction_area_on_interact"]
+
+[editable path="InteractionArea"]
