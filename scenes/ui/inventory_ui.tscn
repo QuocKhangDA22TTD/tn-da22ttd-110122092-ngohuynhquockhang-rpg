@@ -42,8 +42,8 @@ theme_override_constants/separation = 80
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/h_separation = 80
-theme_override_constants/v_separation = 80
+theme_override_constants/h_separation = 64
+theme_override_constants/v_separation = 64
 columns = 6
 
 [node name="Slot" parent="HBoxContainer" unique_id=278048074 instance=ExtResource("3_mdwe3")]
