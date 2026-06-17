@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tahbm")
 slot_scene = ExtResource("2_mdwe3")
-grid = NodePath("HBoxContainer/GridContainer")
+grid = NodePath("GridContainer")
 
 [node name="Panel" type="Panel" parent="." unique_id=1375891763]
 layout_mode = 1
@@ -39,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_nuief")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=111862490]
+[node name="GridContainer" type="GridContainer" parent="." unique_id=349564777]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,19 +48,24 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -32.0
 offset_top = -32.0
-offset_right = 48.0
+offset_right = -32.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 80
-
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer" unique_id=349564777]
-layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/h_separation = 64
 theme_override_constants/v_separation = 64
 columns = 6
 
-[node name="Slot" parent="HBoxContainer" unique_id=278048074 instance=ExtResource("3_mdwe3")]
-layout_mode = 2
+[node name="TrashSlot" parent="." unique_id=278048074 instance=ExtResource("3_mdwe3")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = 128.0
+offset_top = -144.0
+offset_right = 128.0
+offset_bottom = -144.0
+grow_vertical = 0
