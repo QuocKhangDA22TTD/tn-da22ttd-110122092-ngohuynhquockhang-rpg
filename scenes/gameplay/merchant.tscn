@@ -2,7 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cnfyd681trdxe" path="res://scripts/npcs/merchant.gd" id="1_liswg"]
 [ext_resource type="Texture2D" uid="uid://rhici3h7b87r" path="res://assets/graphics/characters/merchant.png" id="2_liswg"]
+[ext_resource type="Script" uid="uid://da36erf37yuv" path="res://scripts/data/item_data.gd" id="2_tbu53"]
+[ext_resource type="Resource" uid="uid://dw3fpwhl5goux" path="res://data/items/mana_potion.tres" id="3_8nllu"]
 [ext_resource type="PackedScene" uid="uid://cr77uo0u0h7nd" path="res://scenes/gameplay/interaction_area.tscn" id="3_fqtx1"]
+[ext_resource type="Resource" uid="uid://bbi5qug4kumuc" path="res://data/items/bow.tres" id="4_52kxr"]
+[ext_resource type="Resource" uid="uid://bqys23112x6ok" path="res://data/items/health_potion.tres" id="5_6v2tk"]
+[ext_resource type="Resource" uid="uid://dgs0vm8i0bun0" path="res://data/items/staff_of_fire.tres" id="6_qwqwo"]
+[ext_resource type="Resource" uid="uid://2oxjf8hoxd7c" path="res://data/items/sword.tres" id="7_tbu53"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ly2y3"]
 radius = 5.0
@@ -12,6 +18,7 @@ radius = 24.0
 
 [node name="Merchant" type="CharacterBody2D" unique_id=692388093]
 script = ExtResource("1_liswg")
+shop_goods = Array[ExtResource("2_tbu53")]([ExtResource("3_8nllu"), ExtResource("4_52kxr"), ExtResource("5_6v2tk"), ExtResource("6_qwqwo"), ExtResource("7_tbu53"), ExtResource("4_52kxr"), ExtResource("4_52kxr"), ExtResource("5_6v2tk"), ExtResource("3_8nllu"), ExtResource("5_6v2tk"), ExtResource("7_tbu53"), ExtResource("6_qwqwo"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=695540957]
 texture = ExtResource("2_liswg")
