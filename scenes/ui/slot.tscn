@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dt0mss81fajoo"]
 
 [ext_resource type="Script" uid="uid://brno2gk6s0rtl" path="res://scripts/system/inventory/slot_ui.gd" id="1_4v6ba"]
+[ext_resource type="Texture2D" uid="uid://bfnf22uej5rq5" path="res://assets/graphics/ui/normal_slot.png" id="2_sad2q"]
 
-[node name="Slot" type="Control" unique_id=278048074 node_paths=PackedStringArray("icon", "amount")]
+[node name="Slot" type="Control" unique_id=278048074 node_paths=PackedStringArray("texture_rect", "icon", "amount")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,13 +11,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4v6ba")
+texture_rect = NodePath("TextureRect")
 icon = NodePath("Icon")
 amount = NodePath("Amount")
 
-[node name="Panel" type="Panel" parent="." unique_id=1466648611]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=472422904]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
+texture = ExtResource("2_sad2q")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1561663722]
 layout_mode = 0

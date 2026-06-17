@@ -1,11 +1,10 @@
 extends Control
 
-# Scene prefab của slot UI (dùng chung với inventory)
-@export var slot_scene : PackedScene
-# Container chứa các slot hotbar
-@export var container: HBoxContainer
-# Số lượng slot trong hotbar
-@export var hotbar_size: int = 6
+@export var slot_scene : PackedScene # Scene prefab của slot UI (dùng chung với inventory)
+@export var container: HBoxContainer # Container chứa các slot hotbar
+@export var hotbar_size: int = 6 # Số lượng slot trong hotbar
+@export var normal_slot_texture: Texture # Texture mặc định cho slot bình thường
+@export var select_slot_texture: Texture # Texture cho slot được chọn
 
 # Mảng chứa các node slot UI của hotbar
 var hotbar_slots = []
@@ -65,12 +64,13 @@ func _input(event):
 func highlight_selected_slot():
 	for i in range(hotbar_slots.size()):
 		var slot = hotbar_slots[i]
-		var panel = slot.get_node("Panel")
+
+		var texture_rect = slot.texture_rect # Tham chiếu tới texture_rect của instance scene slot
 		
 		if i == selected_slot_index:
-			panel.self_modulate = Color(1.5, 1.5, 0.5) * 4  # Vàng sáng
+			texture_rect.texture = select_slot_texture # Nếu slot được chọn, gán texture bằng select_slot_texture
 		else:
-			panel.self_modulate = Color(1.0, 1.0, 1.0)  # Bình thường
+			texture_rect.texture = normal_slot_texture # Nếu không được chọn, gán texture bằng normal_slot_texture
 
 
 func _on_inventory_changed():

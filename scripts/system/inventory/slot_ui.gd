@@ -1,13 +1,10 @@
-# Script quản lý hiển thị và tương tác của một slot UI
 extends Control
 
-# Tham chiếu đến dữ liệu slot
-var slot : Slot
+@export var texture_rect: TextureRect # Tham chiếu đến node TextureRect của slot
+@export var icon: TextureRect # Tham chiếu đến icon hiển thị vật phẩm
+@export var amount: Label # Tham chiếu đến label hiển thị số lượng
 
-# Tham chiếu đến icon hiển thị vật phẩm
-@export var icon: TextureRect
-# Tham chiếu đến label hiển thị số lượng
-@export var amount: Label
+var slot : Slot # Tham chiếu đến dữ liệu slot
 
 # Cập nhật hiển thị UI của slot
 func update_ui():

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b2qjtdn42b8w" path="res://scripts/system/inventory/hotbar_ui.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dt0mss81fajoo" path="res://scenes/ui/slot.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://bfnf22uej5rq5" path="res://assets/graphics/ui/normal_slot.png" id="3_fuo11"]
+[ext_resource type="Texture2D" uid="uid://c6ssv8osag5oe" path="res://assets/graphics/ui/select_slot.png" id="4_vhl7e"]
 
 [node name="HotbarUI" type="Control" unique_id=373460562 node_paths=PackedStringArray("container")]
 layout_mode = 3
@@ -19,6 +21,8 @@ grow_vertical = 0
 script = ExtResource("1")
 slot_scene = ExtResource("2")
 container = NodePath("HBoxContainer")
+normal_slot_texture = ExtResource("3_fuo11")
+select_slot_texture = ExtResource("4_vhl7e")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=668642732]
 layout_mode = 1
