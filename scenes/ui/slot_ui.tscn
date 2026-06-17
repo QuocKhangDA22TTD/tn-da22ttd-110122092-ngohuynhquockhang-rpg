@@ -13,7 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_qcwge")
 texture_rect = NodePath("TextureRect")
 icon = NodePath("Icon")
-amount = NodePath("Amount")
+amount = NodePath("TextureRect/Amount")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=472422904]
 layout_mode = 0
@@ -21,12 +21,27 @@ offset_right = 64.0
 offset_bottom = 64.0
 texture = ExtResource("2_aru5l")
 
+[node name="Amount" type="Label" parent="TextureRect" unique_id=1687080793]
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -28.0
+offset_right = -3.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.93333334, 0.93333334, 0.93333334, 1)
+theme_override_colors/font_shadow_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+
 [node name="Icon" type="TextureRect" parent="." unique_id=1561663722]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
-
-[node name="Amount" type="Label" parent="." unique_id=1687080793]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
