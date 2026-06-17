@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dpd82mwl420i0"]
+
+[ext_resource type="Texture2D" uid="uid://bfnf22uej5rq5" path="res://assets/graphics/ui/normal_slot.png" id="1_6tlrr"]
+[ext_resource type="Script" uid="uid://bibcf86n85y7m" path="res://scripts/system/shop_slot.gd" id="2_1buui"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1buui"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hs082"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ub2ns"]
+
+[node name="ShopSlot" type="Control" unique_id=1951268197 node_paths=PackedStringArray("item_icon")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1buui")
+item_icon = NodePath("SlotBackground/ItemIcon")
+
+[node name="SlotBackground" type="TextureRect" parent="." unique_id=44642145]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_6tlrr")
+
+[node name="ItemIcon" type="TextureRect" parent="SlotBackground" unique_id=172759846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="SlotBackground" unique_id=1248610690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1buui")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hs082")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ub2ns")
+
+[connection signal="pressed" from="SlotBackground/Button" to="." method="_on_pressed"]
