@@ -14,12 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://c06klg74cglxk" path="res://scenes/ui/inventory_ui.tscn" id="11_pe34w"]
 [ext_resource type="PackedScene" uid="uid://bugdyovlrdlon" path="res://scenes/managers/enemy_spawner.tscn" id="12_78tue"]
 [ext_resource type="Script" uid="uid://csdvij8aklsaf" path="res://scripts/core/input_handler.gd" id="13_ll2y6"]
+[ext_resource type="PackedScene" uid="uid://cgs8332kiv678" path="res://scenes/ui/shop_ui.tscn" id="14_3g53l"]
 
-[node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui")]
+[node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui", "shop_ui")]
 script = ExtResource("1_upjpn")
 enemies_container = NodePath("Entities/Enemies")
 input_handler = NodePath("InputHandler")
 hotbar_ui = NodePath("UI/HotbarUI")
+shop_ui = NodePath("UI/ShopUI")
 
 [node name="Maps" type="Node2D" parent="." unique_id=83877726]
 
@@ -72,6 +74,8 @@ item = ExtResource("8_p6fov")
 [node name="HotbarUI" parent="UI" unique_id=1524678013 instance=ExtResource("9_3w4rd")]
 
 [node name="InventoryUI" parent="UI" unique_id=1898595049 instance=ExtResource("11_pe34w")]
+
+[node name="ShopUI" parent="UI" unique_id=1405051982 instance=ExtResource("14_3g53l")]
 
 [node name="InputHandler" type="Node2D" parent="." unique_id=44333829]
 script = ExtResource("13_ll2y6")
