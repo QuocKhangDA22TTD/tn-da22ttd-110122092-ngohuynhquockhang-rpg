@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bugdyovlrdlon" path="res://scenes/managers/enemy_spawner.tscn" id="12_78tue"]
 [ext_resource type="Script" uid="uid://csdvij8aklsaf" path="res://scripts/core/input_handler.gd" id="13_ll2y6"]
 [ext_resource type="PackedScene" uid="uid://cgs8332kiv678" path="res://scenes/ui/shop_ui.tscn" id="14_3g53l"]
+[ext_resource type="PackedScene" uid="uid://lg1p333aau1e" path="res://scenes/ui/clock_ui.tscn" id="15_vigns"]
+[ext_resource type="PackedScene" uid="uid://c5dhf5vimsifg" path="res://scenes/managers/day_night_cycle.tscn" id="17_c456e"]
 
 [node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui", "shop_ui")]
 script = ExtResource("1_upjpn")
@@ -77,5 +79,14 @@ item = ExtResource("8_p6fov")
 
 [node name="ShopUI" parent="UI" unique_id=1405051982 instance=ExtResource("14_3g53l")]
 
+[node name="ClockUI" parent="UI" unique_id=832691385 instance=ExtResource("15_vigns")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 1
+
 [node name="InputHandler" type="Node2D" parent="." unique_id=44333829]
 script = ExtResource("13_ll2y6")
+
+[node name="DayNightCycle" parent="." unique_id=295554606 instance=ExtResource("17_c456e")]
