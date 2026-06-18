@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://sqpf4ht6vujv"]
+
+[ext_resource type="Script" uid="uid://cbdsntyway2bf" path="res://scripts/system/transition_trigger.gd" id="1_3mwl2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llsma"]
+
+[node name="TransitionTrigger" type="Area2D" unique_id=1097956195]
+script = ExtResource("1_3mwl2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=852488943]
+shape = SubResource("RectangleShape2D_llsma")
