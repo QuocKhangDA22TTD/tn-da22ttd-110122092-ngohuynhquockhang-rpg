@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://lg1p333aau1e"]
+
+[ext_resource type="Script" uid="uid://bi4hivk0iqobc" path="res://scripts/system/clock_ui.gd" id="1_mw0nf"]
+
+[node name="ClockUI" type="Control" unique_id=832691385 node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mw0nf")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="." unique_id=498106183]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.93333334, 0.93333334, 0.93333334, 1)
+theme_override_colors/font_shadow_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
