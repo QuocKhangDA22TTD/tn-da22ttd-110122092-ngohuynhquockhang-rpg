@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c5dhf5vimsifg"]
+
+[ext_resource type="Script" uid="uid://cinrof7cp6ol1" path="res://scripts/system/day_night_cycle.gd" id="1_oj6o0"]
+
+[sub_resource type="Gradient" id="Gradient_oj6o0"]
+offsets = PackedFloat32Array(0, 0.2, 0.33, 0.6, 0.75, 0.88, 1)
+colors = PackedColorArray(0.22745098, 0.2901961, 0.47843137, 1, 0.9137255, 0.627451, 0.41960785, 1, 1, 0.9529412, 0.8392157, 1, 1, 1, 1, 1, 0.84705883, 0.627451, 0.64705884, 1, 0.3529412, 0.41960785, 0.65882355, 1, 0.22745098, 0.2901961, 0.47843137, 1)
+metadata/_snap_count = 2
+
+[node name="DayNightCycle" type="CanvasModulate" unique_id=295554606]
+script = ExtResource("1_oj6o0")
+gradient = SubResource("Gradient_oj6o0")
