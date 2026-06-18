@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 InventoryManager="*uid://cmvbqkenwxyu8"
 GameManager="*uid://cesd0ok28a5t3"
 ProjectileManager="*uid://dbmt8qhworc4s"
+TimeManager="*uid://dm7d5bgtbqw3h"
 
 [display]
 
