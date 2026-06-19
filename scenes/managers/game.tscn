@@ -29,12 +29,15 @@ maps_container = NodePath("World/Maps")
 entities_container = NodePath("World/Entities")
 
 [node name="World" type="Node2D" parent="." unique_id=193438284]
+y_sort_enabled = true
 
 [node name="Maps" type="Node2D" parent="World" unique_id=83877726]
+y_sort_enabled = true
 
 [node name="HomeBase" parent="World/Maps" unique_id=1019395140 instance=ExtResource("2_qxu4n")]
 
 [node name="Entities" type="Node2D" parent="World" unique_id=724745038]
+y_sort_enabled = true
 
 [node name="Player" parent="World/Entities" unique_id=955801447 instance=ExtResource("3_qxu4n")]
 position = Vector2(421, 342)
