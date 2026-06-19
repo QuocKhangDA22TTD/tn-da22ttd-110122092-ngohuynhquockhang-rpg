@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LootItemData" format=3 uid="uid://mx7pu8ujjj71"]
+
+[ext_resource type="Resource" uid="uid://bxih8ev2krpiu" path="res://data/items/mana_crystal.tres" id="1_7jrhv"]
+[ext_resource type="Script" uid="uid://bgc5kc8ht7mcn" path="res://scripts/data/loot_item_data.gd" id="1_q6baj"]
+
+[resource]
+script = ExtResource("1_q6baj")
+item_data = ExtResource("1_7jrhv")
+metadata/_custom_type_script = "uid://bgc5kc8ht7mcn"

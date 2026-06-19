@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootItemData" format=3 uid="uid://b77aq32w7c4ki"]
+
+[ext_resource type="Resource" uid="uid://b1k3s4s68chga" path="res://data/items/slime_gel.tres" id="1_so8tp"]
+[ext_resource type="Script" uid="uid://bgc5kc8ht7mcn" path="res://scripts/data/loot_item_data.gd" id="1_wgj68"]
+
+[resource]
+script = ExtResource("1_wgj68")
+item_data = ExtResource("1_so8tp")
+drop_chance = 100.0
+metadata/_custom_type_script = "uid://bgc5kc8ht7mcn"

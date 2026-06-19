@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dd3g26wg0xp5c"]
 
 [ext_resource type="AnimationLibrary" uid="uid://w3mb5qt2lcco" path="res://data/animaitons/slime_anim.res" id="1_57a0h"]
+[ext_resource type="Resource" uid="uid://bqrj3ehhom6f6" path="res://data/loot_tables/slime_loot.tres" id="2_8a2r4"]
 [ext_resource type="Script" uid="uid://caw6e3cxvhnos" path="res://scripts/data/enemy_data.gd" id="2_erqfb"]
 [ext_resource type="Script" uid="uid://b3st7tlisfq5d" path="res://scripts/entities/enemies/base/enemy_state.gd" id="3_8a2r4"]
 [ext_resource type="Script" uid="uid://dwt32hvdxfg87" path="res://scripts/entities/enemies/common_state/idle_state.gd" id="4_ixv53"]
@@ -41,4 +42,5 @@ max_hp = 100
 damage = 20
 animation_library = ExtResource("1_57a0h")
 states = Array[ExtResource("3_8a2r4")]([SubResource("Resource_sdq6s"), SubResource("Resource_n6ilt"), SubResource("Resource_w2osu"), SubResource("Resource_3keqd"), SubResource("Resource_64lo3"), SubResource("Resource_hdd7q")])
+loot_table_resource = ExtResource("2_8a2r4")
 metadata/_custom_type_script = "uid://caw6e3cxvhnos"
