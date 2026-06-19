@@ -9,6 +9,8 @@ extends CharacterBody2D
 @export var navigation_agent_2d: NavigationAgent2D
 @export var hurtbox: Hurtbox
 @export var hitbox: Area2D # Hitbox để detect va chạm player melee attack + gây damage cho player khi enemy tấn công
+@export var loot_table: LootTableData # Danh sách các vật phẩm sẽ rớt ra khi enemy chết
+@export var item_drop_scene: PackedScene # Gán scene item_drop vào để enemy sử dụng để spawn item ra ngoài môi trường
 
 var current_state: EnemyState
 var current_health: int # Máu hiện tại của Enemy
@@ -40,6 +42,9 @@ func _ready():
 	# Kết nối signal velocity_computed từ NavigationAgent2D
 	if navigation_agent_2d:
 		navigation_agent_2d.velocity_computed.connect(_on_velocity_computed)
+	
+	# Gán dữ liệu các item sẽ rơi ra trong biến export data vào biến export loot_table
+	loot_table = data.loot_table_resource
 
 
 func _physics_process(delta):

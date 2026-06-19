@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ce88d8g3cgi63" path="res://scripts/entities/enemies/base/enemy.gd" id="1_7p1mj"]
 [ext_resource type="PackedScene" uid="uid://djkdsp5l0r5k6" path="res://scenes/gameplay/damage_number.tscn" id="2_md0e3"]
-[ext_resource type="Texture2D" uid="uid://cla0oxxt3g4a1" path="res://assets/ui/health_bar_over.png" id="3_4ra3w"]
-[ext_resource type="Texture2D" uid="uid://dhrnbl64t6vxx" path="res://assets/ui/health_bar_under.png" id="3_c4w8v"]
-[ext_resource type="Texture2D" uid="uid://bbwtmracii64p" path="res://assets/ui/health_bar_progress.png" id="5_xwavj"]
+[ext_resource type="Texture2D" uid="uid://cla0oxxt3g4a1" path="res://assets/graphics/ui/health_bar_over.png" id="3_4ra3w"]
+[ext_resource type="Texture2D" uid="uid://dhrnbl64t6vxx" path="res://assets/graphics/ui/health_bar_under.png" id="3_c4w8v"]
+[ext_resource type="PackedScene" uid="uid://cfvxrdmvfuaw" path="res://scenes/ui/item_drop.tscn" id="3_nsqub"]
+[ext_resource type="Texture2D" uid="uid://bbwtmracii64p" path="res://assets/graphics/ui/health_bar_progress.png" id="5_xwavj"]
 [ext_resource type="Script" uid="uid://b2swple1go7ko" path="res://scripts/system/combat/hurtbox.gd" id="6_ykhjb"]
 [ext_resource type="Script" uid="uid://dw7p628bxvoo6" path="res://scripts/system/combat/hitbox.gd" id="7_hypnf"]
 
@@ -21,6 +22,7 @@ damage_number_scene = ExtResource("2_md0e3")
 navigation_agent_2d = NodePath("NavigationAgent2D")
 hurtbox = NodePath("Hurtbox")
 hitbox = NodePath("Hitbox")
+item_drop_scene = ExtResource("3_nsqub")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1751548273]
 
