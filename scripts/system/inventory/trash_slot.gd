@@ -48,7 +48,7 @@ func _drop_data(pos, data):
 			drop.global_position = player.global_position + random_offset
 		
 		# Thêm item drop vào scene root
-		get_tree().root.add_child(drop)
+		GameManager.items_container.add_child(drop)
 	
 	# Xóa item khỏi slot nguồn
 	data.slot.item = null
