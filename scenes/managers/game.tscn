@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://lg1p333aau1e" path="res://scenes/ui/clock_ui.tscn" id="15_vigns"]
 [ext_resource type="PackedScene" uid="uid://c5dhf5vimsifg" path="res://scenes/managers/day_night_cycle.tscn" id="17_c456e"]
 
-[node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui", "shop_ui", "maps_container", "entities_container")]
+[node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui", "shop_ui", "maps_container", "entities_container", "items_container")]
 script = ExtResource("1_upjpn")
 enemies_container = NodePath("World/Entities/Enemies")
 input_handler = NodePath("Systems/InputHandler")
@@ -27,6 +27,7 @@ hotbar_ui = NodePath("UI/HotbarUI")
 shop_ui = NodePath("UI/ShopUI")
 maps_container = NodePath("World/Maps")
 entities_container = NodePath("World/Entities")
+items_container = NodePath("World/Items")
 
 [node name="World" type="Node2D" parent="." unique_id=193438284]
 y_sort_enabled = true
@@ -51,31 +52,31 @@ position = Vector2(470, 255)
 [node name="Items" type="Node2D" parent="World" unique_id=1685418430]
 
 [node name="ItemDrop" parent="World/Items" unique_id=1534783335 instance=ExtResource("4_3g53l")]
-position = Vector2(100, 103)
+position = Vector2(262, 388)
 item = ExtResource("5_vigns")
 
 [node name="ItemDrop2" parent="World/Items" unique_id=1548748483 instance=ExtResource("4_3g53l")]
-position = Vector2(201, 104)
+position = Vector2(363, 389)
 item = ExtResource("6_c456e")
 
 [node name="ItemDrop3" parent="World/Items" unique_id=1615172490 instance=ExtResource("4_3g53l")]
-position = Vector2(294, 103)
+position = Vector2(456, 388)
 item = ExtResource("7_j4x4q")
 
 [node name="ItemDrop4" parent="World/Items" unique_id=625865559 instance=ExtResource("4_3g53l")]
-position = Vector2(201, 186)
+position = Vector2(363, 471)
 item = ExtResource("8_p6fov")
 
 [node name="ItemDrop5" parent="World/Items" unique_id=1265507454 instance=ExtResource("4_3g53l")]
-position = Vector2(299, 187)
+position = Vector2(461, 472)
 item = ExtResource("8_p6fov")
 
 [node name="ItemDrop6" parent="World/Items" unique_id=272055226 instance=ExtResource("4_3g53l")]
-position = Vector2(94, 184)
+position = Vector2(256, 469)
 item = ExtResource("10_qxu4n")
 
 [node name="ItemDrop7" parent="World/Items" unique_id=301604292 instance=ExtResource("4_3g53l")]
-position = Vector2(92, 268)
+position = Vector2(254, 553)
 item = ExtResource("8_p6fov")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=293291314]
