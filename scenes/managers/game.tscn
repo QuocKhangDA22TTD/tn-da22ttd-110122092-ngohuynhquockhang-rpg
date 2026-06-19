@@ -43,6 +43,7 @@ y_sort_enabled = true
 position = Vector2(421, 342)
 
 [node name="Enemies" type="Node2D" parent="World/Entities" unique_id=46826747]
+y_sort_enabled = true
 
 [node name="EnemySpawner" parent="World/Entities" unique_id=166305411 instance=ExtResource("12_78tue")]
 position = Vector2(470, 255)
