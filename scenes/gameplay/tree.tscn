@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c0025128bjx6x"]
+
+[ext_resource type="Texture2D" uid="uid://b0sr7dc6qwyc" path="res://assets/graphics/environment/objects.png" id="1_u7ccs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtjiv"]
+atlas = ExtResource("1_u7ccs")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ge3lw"]
+radius = 7.0
+
+[node name="Tree" type="StaticBody2D" unique_id=1827045779]
+collision_layer = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=33111917]
+texture = SubResource("AtlasTexture_dtjiv")
+offset = Vector2(0, -43)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1389161872]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_ge3lw")
