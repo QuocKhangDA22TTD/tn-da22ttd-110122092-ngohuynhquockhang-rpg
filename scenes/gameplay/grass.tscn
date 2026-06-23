@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0uw1xholnfxx"]
 
 [ext_resource type="Texture2D" uid="uid://b0sr7dc6qwyc" path="res://assets/graphics/environment/objects.png" id="1_qtvsu"]
+[ext_resource type="Script" uid="uid://b2swple1go7ko" path="res://scripts/system/combat/hurtbox.gd" id="1_tp2ke"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tp2ke"]
 atlas = ExtResource("1_qtvsu")
@@ -9,12 +10,15 @@ region = Rect2(0, 96, 32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_obhsv"]
 radius = 3.0
 
-[node name="Grass" type="Area2D" unique_id=1431779022]
+[node name="Grass" type="Node2D" unique_id=1035647717]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=96621934]
 texture = SubResource("AtlasTexture_tp2ke")
 offset = Vector2(0, -3)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1085718860]
+[node name="Area2D" type="Area2D" parent="." unique_id=215346568]
+script = ExtResource("1_tp2ke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1085718860]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_obhsv")
