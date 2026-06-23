@@ -2590,8 +2590,9 @@ libraries/ = SubResource("AnimationLibrary_fjrip")
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_g2els")
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=1643579426 groups=["player"]]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1643579426 node_paths=PackedStringArray("owner_entity") groups=["player"]]
 script = ExtResource("3_03k2y")
+owner_entity = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=389324554 groups=["player"]]
 position = Vector2(0, -6)

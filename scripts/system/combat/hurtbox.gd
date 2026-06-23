@@ -1,11 +1,9 @@
 extends Area2D
 class_name Hurtbox
 
-var owner_entity: Node # Biến để lưu reference đến entity sở hữu hurtbox
+@export var owner_entity: Node2D # Biến để lưu reference đến entity sở hữu hurtbox
 
 func _ready() -> void:
-	owner_entity = get_parent()
-	
 	# Thêm vào group dựa trên parent
 	if owner_entity.is_in_group("player"):
 		add_to_group("player_hurtbox")

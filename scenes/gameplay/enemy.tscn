@@ -48,8 +48,9 @@ position = Vector2(0, -5)
 scale = Vector2(1.5, 1)
 shape = SubResource("CircleShape2D_hypnf")
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=1660379758 groups=["enemy"]]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1660379758 node_paths=PackedStringArray("owner_entity") groups=["enemy"]]
 script = ExtResource("6_ykhjb")
+owner_entity = NodePath("..")
 
 [node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1036084278 groups=["enemy"]]
 
