@@ -36,6 +36,7 @@ func _drop_data(pos, data):
 		var drop = item_drop_scene.instantiate()
 		drop.item = item_to_drop
 		drop.amount = amount_to_drop
+		drop.pickup_delay = 2.5
 		
 		# Lấy vị trí của player để spawn item
 		var player = GameManager.player
