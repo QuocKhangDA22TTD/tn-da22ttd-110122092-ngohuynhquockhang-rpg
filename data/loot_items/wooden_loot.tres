@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LootItemData" format=3 uid="uid://cyvplxbxfeflc"]
+
+[ext_resource type="Resource" uid="uid://byx5efrk5bpd5" path="res://data/items/wooden.tres" id="1_5a1n2"]
+[ext_resource type="Script" uid="uid://bgc5kc8ht7mcn" path="res://scripts/data/loot_item_data.gd" id="1_41l3d"]
+
+[resource]
+script = ExtResource("1_41l3d")
+item_data = ExtResource("1_5a1n2")
+drop_chance = 100.0
+min_quantity = 4
+max_quantity = 4
+metadata/_custom_type_script = "uid://bgc5kc8ht7mcn"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootTableData" format=3 uid="uid://c71fhhmhcavuf"]
+
+[ext_resource type="Script" uid="uid://bgc5kc8ht7mcn" path="res://scripts/data/loot_item_data.gd" id="1_r2h1p"]
+[ext_resource type="Script" uid="uid://c2w5jdaxgh2bc" path="res://scripts/data/loot_table_data.gd" id="2_1rrpb"]
+[ext_resource type="Resource" uid="uid://886yna2k3uka" path="res://data/loot_items/herbal_loot.tres" id="2_u8usj"]
+
+[resource]
+script = ExtResource("2_1rrpb")
+loot_items = Array[ExtResource("1_r2h1p")]([ExtResource("2_u8usj")])
+metadata/_custom_type_script = "uid://c2w5jdaxgh2bc"

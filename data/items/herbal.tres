@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://divvcjjnkpfn8"]
+
+[ext_resource type="Texture2D" uid="uid://c776dk2ct6nf0" path="res://assets/graphics/items/herbal.png" id="1_n7hph"]
+[ext_resource type="Script" uid="uid://da36erf37yuv" path="res://scripts/data/item_data.gd" id="1_rcsxb"]
+
+[resource]
+script = ExtResource("1_rcsxb")
+id = "herbal"
+name = "herbal"
+icon = ExtResource("1_n7hph")
+max_stack = 64
+type = 1
+metadata/_custom_type_script = "uid://da36erf37yuv"
