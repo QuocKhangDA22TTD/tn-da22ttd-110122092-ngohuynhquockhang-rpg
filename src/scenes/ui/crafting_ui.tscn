@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cnpltbfwmeljg"]
+
+[ext_resource type="Script" uid="uid://by2cyr374c6bh" path="res://scripts/system/crafting_ui.gd" id="1_efemu"]
+[ext_resource type="PackedScene" uid="uid://cowpqk6guhhiy" path="res://scenes/ui/recipe_button.tscn" id="2_4hpgr"]
+[ext_resource type="PackedScene" uid="uid://c1vlsjgh5x5l3" path="res://scenes/ui/ingredient_ui.tscn" id="3_iuwas"]
+
+[node name="CraftingUI" type="Control" unique_id=1969953454 node_paths=PackedStringArray("recipe_list_container", "ingredient_grid", "result_icon", "result_name", "craft_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_efemu")
+recipe_button_scene = ExtResource("2_4hpgr")
+ingredient_ui_scene = ExtResource("3_iuwas")
+recipe_list_container = NodePath("MainPanel/HBoxContainer/LeftColumn/RecipeListContainer")
+ingredient_grid = NodePath("MainPanel/HBoxContainer/RightColumn/IngredientGrid")
+result_icon = NodePath("MainPanel/HBoxContainer/RightColumn/ResultInfo/ResultIcon")
+result_name = NodePath("MainPanel/HBoxContainer/RightColumn/ResultInfo/ResultName")
+craft_button = NodePath("MainPanel/HBoxContainer/RightColumn/CraftButton")
+
+[node name="MainPanel" type="PanelContainer" parent="." unique_id=1403543916]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel" unique_id=319595159]
+layout_mode = 2
+
+[node name="LeftColumn" type="ScrollContainer" parent="MainPanel/HBoxContainer" unique_id=1526881546]
+layout_mode = 2
+
+[node name="RecipeListContainer" type="VBoxContainer" parent="MainPanel/HBoxContainer/LeftColumn" unique_id=196712417]
+layout_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="MainPanel/HBoxContainer" unique_id=5562138]
+layout_mode = 2
+
+[node name="ResultInfo" type="HBoxContainer" parent="MainPanel/HBoxContainer/RightColumn" unique_id=448672192]
+layout_mode = 2
+
+[node name="ResultIcon" type="TextureRect" parent="MainPanel/HBoxContainer/RightColumn/ResultInfo" unique_id=539706584]
+layout_mode = 2
+
+[node name="ResultName" type="Label" parent="MainPanel/HBoxContainer/RightColumn/ResultInfo" unique_id=1924405122]
+layout_mode = 2
+
+[node name="IngredientGrid" type="GridContainer" parent="MainPanel/HBoxContainer/RightColumn" unique_id=1039235247]
+layout_mode = 2
+
+[node name="CraftButton" type="Button" parent="MainPanel/HBoxContainer/RightColumn" unique_id=119731431]
+layout_mode = 2

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cowpqk6guhhiy"]
+
+[ext_resource type="Script" uid="uid://d1c2kvi7auegw" path="res://scripts/system/recipe_button.gd" id="1_dbm17"]
+
+[node name="RecipeButton" type="Button" unique_id=2130236878 node_paths=PackedStringArray("icon_rect", "name_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dbm17")
+icon_rect = NodePath("HBoxContainer/Icon")
+name_label = NodePath("HBoxContainer/NameLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=416470392]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=305556000]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="HBoxContainer" unique_id=1938643767]
+layout_mode = 2

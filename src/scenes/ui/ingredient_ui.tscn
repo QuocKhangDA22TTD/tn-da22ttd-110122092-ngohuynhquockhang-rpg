@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c1vlsjgh5x5l3"]
+
+[ext_resource type="Script" uid="uid://twrgtih22hjb" path="res://scripts/system/ingredient_ui.gd" id="1_oqh1l"]
+
+[node name="IngredientUI" type="Control" unique_id=352671955 node_paths=PackedStringArray("icon", "amount_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oqh1l")
+icon = NodePath("HBoxContainer/Icon")
+amount_label = NodePath("HBoxContainer/AmountLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=461083882]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=790962065]
+layout_mode = 2
+
+[node name="AmountLabel" type="Label" parent="HBoxContainer" unique_id=87785038]
+layout_mode = 2
