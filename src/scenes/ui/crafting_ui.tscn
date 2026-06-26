@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://by2cyr374c6bh" path="res://scripts/system/crafting_ui.gd" id="1_efemu"]
 [ext_resource type="PackedScene" uid="uid://cowpqk6guhhiy" path="res://scenes/ui/recipe_button.tscn" id="2_4hpgr"]
 [ext_resource type="PackedScene" uid="uid://c1vlsjgh5x5l3" path="res://scenes/ui/ingredient_ui.tscn" id="3_iuwas"]
-[ext_resource type="Script" uid="uid://c7p4qnqrs502p" path="res://scripts/data/recipe_data.gd" id="4_wt5wn"]
-[ext_resource type="Resource" uid="uid://bu6xtnne1on2a" path="res://data/recipes/recipe_health_potion.tres" id="5_j1uoo"]
 
 [node name="CraftingUI" type="Control" unique_id=1969953454 node_paths=PackedStringArray("recipe_list_container", "ingredient_grid", "result_icon", "result_name", "craft_button")]
 layout_mode = 3
@@ -21,7 +19,6 @@ ingredient_grid = NodePath("MainPanel/HBoxContainer/RightColumn/IngredientGrid")
 result_icon = NodePath("MainPanel/HBoxContainer/RightColumn/ResultInfo/ResultIcon")
 result_name = NodePath("MainPanel/HBoxContainer/RightColumn/ResultInfo/ResultName")
 craft_button = NodePath("MainPanel/HBoxContainer/RightColumn/CraftButton")
-all_recipes = Array[ExtResource("4_wt5wn")]([ExtResource("5_j1uoo")])
 
 [node name="MainPanel" type="PanelContainer" parent="." unique_id=1403543916]
 layout_mode = 1
