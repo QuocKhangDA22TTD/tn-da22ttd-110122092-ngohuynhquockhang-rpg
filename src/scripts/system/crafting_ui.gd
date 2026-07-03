@@ -19,11 +19,9 @@ func _ready():
 	render_recipe_list()
 	hide()
 
-func _input(event):
-	if event.is_action_pressed("toggle_crafting"): # Bạn tự cài Action này trong Input Map nhé
-		visible = !visible
-		if visible:
-			update_detail_panel()
+func open_crafting():
+	show()
+	update_detail_panel()
 
 # Vẽ danh sách công thức bên trái
 func render_recipe_list():
