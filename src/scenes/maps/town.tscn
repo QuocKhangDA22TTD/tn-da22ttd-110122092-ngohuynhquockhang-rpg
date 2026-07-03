@@ -366,7 +366,7 @@ physics_layer_0/collision_layer = 3
 sources/1 = SubResource("TileSetAtlasSource_bpfsj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ph6nv"]
-size = Vector2(150, 20)
+size = Vector2(32, 21)
 
 [node name="Town" type="Node2D" unique_id=1019395140]
 y_sort_enabled = true
@@ -397,15 +397,31 @@ tile_set = ExtResource("4_6xgci")
 [node name="Sp_From_Forest" type="Node2D" parent="SpawnPoints" unique_id=1247204461]
 position = Vector2(480, 784)
 
+[node name="Sp_From_Home_Base" type="Node2D" parent="SpawnPoints" unique_id=211034730]
+position = Vector2(352, 516)
+
 [node name="Triggers" type="Node2D" parent="." unique_id=1683856371]
 
 [node name="TransitionTrigger" type="Area2D" parent="Triggers" unique_id=816796855]
 position = Vector2(480, 837)
 script = ExtResource("5_r73tn")
 target_map_path = "uid://cmyw1f85vgxgs"
-target_spawn_id = "Sp_From_Home_Base"
+target_spawn_id = "Sp_From_Town"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TransitionTrigger" unique_id=160910371]
 shape = SubResource("RectangleShape2D_ph6nv")
 
+[node name="TransitionTrigger2" type="Area2D" parent="Triggers" unique_id=1912390972]
+z_index = 1
+position = Vector2(352, 478)
+script = ExtResource("5_r73tn")
+target_map_path = "uid://b12hvvwiae04k"
+target_spawn_id = "Sp_From_Town"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TransitionTrigger2" unique_id=1337359911]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ph6nv")
+
 [connection signal="area_entered" from="Triggers/TransitionTrigger" to="Triggers/TransitionTrigger" method="_on_area_entered"]
+[connection signal="area_entered" from="Triggers/TransitionTrigger2" to="Triggers/TransitionTrigger2" method="_on_area_entered"]

@@ -375,7 +375,7 @@ tile_set = ExtResource("3_mi478")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1897914284]
 
-[node name="Sp_From_Home_Base" type="Node2D" parent="SpawnPoints" unique_id=1293555642]
+[node name="Sp_From_Town" type="Node2D" parent="SpawnPoints" unique_id=1293555642]
 position = Vector2(192, 48)
 
 [node name="Triggers" type="Node2D" parent="." unique_id=314538899]
