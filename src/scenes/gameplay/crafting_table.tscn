@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b0x0wwqxmrkg6"]
+
+[ext_resource type="Script" uid="uid://c1fdqmu7yac7c" path="res://scripts/entities/crafting_table.gd" id="1_bhv5c"]
+[ext_resource type="Texture2D" uid="uid://b0sr7dc6qwyc" path="res://assets/graphics/environment/objects.png" id="1_gcdds"]
+[ext_resource type="Script" uid="uid://bb1u8ynn05yp" path="res://scripts/npcs/interaction_area.gd" id="2_7ly0d"]
+[ext_resource type="PackedScene" uid="uid://btvqtbd2r2e32" path="res://scenes/gameplay/interactable_ui.tscn" id="3_bhv5c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ka1i"]
+atlas = ExtResource("1_gcdds")
+region = Rect2(0, 128, 64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhv5c"]
+size = Vector2(44, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ly0d"]
+size = Vector2(64, 48)
+
+[node name="CraftingTable" type="Node2D" unique_id=1513737323]
+script = ExtResource("1_bhv5c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1858147340]
+texture = SubResource("AtlasTexture_2ka1i")
+offset = Vector2(0, -12)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=231404425]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=66000701]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_bhv5c")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=665103888 node_paths=PackedStringArray("interactable_ui")]
+script = ExtResource("2_7ly0d")
+interactable_ui = NodePath("InteractableUI")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=360320098]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_7ly0d")
+
+[node name="InteractableUI" parent="InteractionArea" unique_id=1426555862 instance=ExtResource("3_bhv5c")]
+position = Vector2(0, -48)
+
+[connection signal="on_interact" from="InteractionArea" to="." method="_on_interaction_area_on_interact"]
