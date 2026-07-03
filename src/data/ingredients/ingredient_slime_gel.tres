@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Ingredient" format=3 uid="uid://dbi85av5a6fwf"]
+
+[ext_resource type="Resource" uid="uid://divvcjjnkpfn8" path="res://data/items/herbal.tres" id="1_dju2g"]
+[ext_resource type="Script" uid="uid://flnaxc75234i" path="res://scripts/data/ingredient.gd" id="1_u7ktp"]
+
+[resource]
+script = ExtResource("1_u7ktp")
+item = ExtResource("1_dju2g")
+amount = 2
+metadata/_custom_type_script = "uid://flnaxc75234i"
