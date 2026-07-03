@@ -5,11 +5,6 @@ extends Marker2D
 func set_values(amount: int, is_critical: bool = false):
 	label.text = str(amount)
 
-	if label.label_settings == null:
-		label.label_settings = LabelSettings.new() # Khởi tạo LabelSettings nếu chưa tồn tại để tránh lỗi khi thiết lập font_color
-
-	label.label_settings.font_color = Color.WHITE # Thiết lập màu chữ mặc định
-
 	# Tạo hiệu ứng Tween
 	var tween = create_tween().set_parallel(true)
 	

@@ -9,5 +9,9 @@ label = NodePath("Label")
 [node name="Label" type="Label" parent="." unique_id=447362323]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.93333334, 0.93333334, 0.93333334, 1)
+theme_override_colors/font_shadow_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 vertical_alignment = 1
