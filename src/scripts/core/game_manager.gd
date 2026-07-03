@@ -8,6 +8,7 @@ var shop_ui # Tham chiếu đến shop UI
 var maps_container # Tham chiếu đến container chứa map
 var entities_container # Tham chiếu đến container chứa các entity
 var items_container # Tham chiếu tới container chứa các item
+var crafting_table # Tham chiếu tới crafting table
 
 func _ready():
 	pass

@@ -18,8 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://cgs8332kiv678" path="res://scenes/ui/shop_ui.tscn" id="14_3g53l"]
 [ext_resource type="PackedScene" uid="uid://lg1p333aau1e" path="res://scenes/ui/clock_ui.tscn" id="15_vigns"]
 [ext_resource type="PackedScene" uid="uid://c5dhf5vimsifg" path="res://scenes/managers/day_night_cycle.tscn" id="17_c456e"]
+[ext_resource type="PackedScene" uid="uid://cnpltbfwmeljg" path="res://scenes/ui/crafting_ui.tscn" id="17_p6fov"]
 
-[node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui", "shop_ui", "maps_container", "entities_container", "items_container")]
+[node name="Game" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui", "shop_ui", "maps_container", "entities_container", "items_container", "crafting_table")]
 script = ExtResource("1_upjpn")
 enemies_container = NodePath("World/Entities/Enemies")
 input_handler = NodePath("Systems/InputHandler")
@@ -28,6 +29,7 @@ shop_ui = NodePath("UI/ShopUI")
 maps_container = NodePath("World/Maps")
 entities_container = NodePath("World/Entities")
 items_container = NodePath("World/Items")
+crafting_table = NodePath("UI/CraftingUI")
 
 [node name="World" type="Node2D" parent="." unique_id=193438284]
 y_sort_enabled = true
@@ -101,6 +103,8 @@ anchor_left = 1.0
 anchor_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 1
+
+[node name="CraftingUI" parent="UI" unique_id=1969953454 instance=ExtResource("17_p6fov")]
 
 [node name="Systems" type="Node2D" parent="." unique_id=2089770179]
 

@@ -7,6 +7,7 @@ extends Node2D
 @export var maps_container: Node2D # Tham chiếu đến container chứa map
 @export var entities_container: Node2D # Tham chiếu đến container chứa các entity
 @export var items_container: Node2D # Tham chiếu tới container chứa các item
+@export var crafting_table: Control # Tham chiếu tới crafting table
 
 # Hàm sẽ được gọi 1 lần khi scene đã load xong tất cả node.
 func _enter_tree() -> void:
@@ -17,3 +18,4 @@ func _enter_tree() -> void:
 	GameManager.maps_container = maps_container # gán container chứa map cho biến maps_container của GameManager
 	GameManager.entities_container = entities_container # gán container chứa entity cho biến entities_container của GameManager
 	GameManager.items_container = items_container # gán container chứa item cho biến items_container của GameManager
+	GameManager.crafting_table = crafting_table # gán crafting table cho biến crafting_table của GameManager
