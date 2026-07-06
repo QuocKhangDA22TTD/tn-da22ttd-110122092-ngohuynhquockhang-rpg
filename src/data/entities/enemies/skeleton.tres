@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://inkwqgchp1nu"]
+
+[ext_resource type="AnimationLibrary" uid="uid://dx4ce04lbwgtl" path="res://data/animaitons/skeleton.res" id="1_6s7hy"]
+[ext_resource type="Script" uid="uid://caw6e3cxvhnos" path="res://scripts/data/enemy_data.gd" id="1_v7mla"]
+[ext_resource type="Script" uid="uid://b3st7tlisfq5d" path="res://scripts/entities/enemies/base/enemy_state.gd" id="2_q7t6q"]
+[ext_resource type="Script" uid="uid://dwt32hvdxfg87" path="res://scripts/entities/enemies/common_state/idle_state.gd" id="4_xxbk1"]
+[ext_resource type="Script" uid="uid://u14cnum8qsgi" path="res://scripts/entities/enemies/common_state/patrol_state.gd" id="5_qak71"]
+[ext_resource type="Script" uid="uid://b3ry0t6i6prmc" path="res://scripts/entities/enemies/common_state/chase_state.gd" id="6_gbrtv"]
+[ext_resource type="Script" uid="uid://dh5hcns2relew" path="res://scripts/entities/enemies/common_state/hit_state.gd" id="7_8mmlg"]
+[ext_resource type="Script" uid="uid://c6ey0a2anu52n" path="res://scripts/entities/enemies/common_state/die_state.gd" id="8_ebqku"]
+
+[sub_resource type="Resource" id="Resource_32ufn"]
+script = ExtResource("4_xxbk1")
+metadata/_custom_type_script = "uid://dwt32hvdxfg87"
+
+[sub_resource type="Resource" id="Resource_bmmc8"]
+script = ExtResource("5_qak71")
+metadata/_custom_type_script = "uid://u14cnum8qsgi"
+
+[sub_resource type="Resource" id="Resource_su5wc"]
+script = ExtResource("6_gbrtv")
+metadata/_custom_type_script = "uid://b3ry0t6i6prmc"
+
+[sub_resource type="Resource" id="Resource_qvn80"]
+script = ExtResource("7_8mmlg")
+metadata/_custom_type_script = "uid://dh5hcns2relew"
+
+[sub_resource type="Resource" id="Resource_4d5sr"]
+script = ExtResource("8_ebqku")
+metadata/_custom_type_script = "uid://c6ey0a2anu52n"
+
+[resource]
+script = ExtResource("1_v7mla")
+id = "sleleton"
+display_name = "sleleton"
+max_hp = 140
+speed = 50.0
+damage = 40
+patrol_radius = 300.0
+chase_distance = 150.0
+animation_library = ExtResource("1_6s7hy")
+states = Array[ExtResource("2_q7t6q")]([SubResource("Resource_32ufn"), SubResource("Resource_bmmc8"), SubResource("Resource_su5wc"), SubResource("Resource_qvn80"), SubResource("Resource_4d5sr")])
+metadata/_custom_type_script = "uid://caw6e3cxvhnos"
