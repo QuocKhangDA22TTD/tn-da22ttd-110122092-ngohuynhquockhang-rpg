@@ -3,7 +3,7 @@ extends Control
 @export var recipe_button_scene: PackedScene # Nút bấm chọn công thức bên trái
 @export var ingredient_ui_scene: PackedScene # Prefab hiển thị nguyên liệu bên phải
 
-@export var recipe_list_container: VBoxContainer # Chứa danh sách công thức
+@export var recipe_list_container: GridContainer # Chứa danh sách công thức
 @export var ingredient_grid: GridContainer # Chứa các nguyên liệu yêu cầu
 @export var result_icon: TextureRect # Icon thành phẩm
 @export var result_name: Label # Tên thành phẩm

@@ -70,9 +70,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="RecipeListContainer" type="VBoxContainer" parent="HBoxContainer/TextureRect/LeftColumn" unique_id=196712417]
+[node name="RecipeListContainer" type="GridContainer" parent="HBoxContainer/TextureRect/LeftColumn" unique_id=921170994]
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=2138809991]
 layout_mode = 2
