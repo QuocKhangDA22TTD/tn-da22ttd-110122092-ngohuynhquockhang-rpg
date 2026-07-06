@@ -400,6 +400,9 @@ position = Vector2(480, 784)
 [node name="Sp_From_Home_Base" type="Node2D" parent="SpawnPoints" unique_id=211034730]
 position = Vector2(352, 516)
 
+[node name="Sp_From_Shop" type="Node2D" parent="SpawnPoints" unique_id=1706823788]
+position = Vector2(584, 568)
+
 [node name="Triggers" type="Node2D" parent="." unique_id=1683856371]
 
 [node name="TransitionTrigger" type="Area2D" parent="Triggers" unique_id=816796855]
@@ -423,5 +426,18 @@ metadata/_edit_group_ = true
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ph6nv")
 
+[node name="TransitionTrigger3" type="Area2D" parent="Triggers" unique_id=247859423]
+z_index = 1
+position = Vector2(581, 525)
+script = ExtResource("5_r73tn")
+target_map_path = "uid://y4fgu70bhtv"
+target_spawn_id = "Sp_From_Town"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TransitionTrigger3" unique_id=1250297112]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ph6nv")
+
 [connection signal="area_entered" from="Triggers/TransitionTrigger" to="Triggers/TransitionTrigger" method="_on_area_entered"]
 [connection signal="area_entered" from="Triggers/TransitionTrigger2" to="Triggers/TransitionTrigger2" method="_on_area_entered"]
+[connection signal="area_entered" from="Triggers/TransitionTrigger3" to="Triggers/TransitionTrigger3" method="_on_area_entered"]
