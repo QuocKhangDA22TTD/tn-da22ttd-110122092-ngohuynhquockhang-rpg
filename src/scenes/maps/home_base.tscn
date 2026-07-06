@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cv64oopm7fkdh" path="res://assets/graphics/environment/building.png" id="2_7ceih"]
 [ext_resource type="TileSet" uid="uid://dud0lw5owqw5h" path="res://data/tilesets/fence.tres" id="4_6263n"]
 [ext_resource type="Script" uid="uid://cbdsntyway2bf" path="res://scripts/system/transition_trigger.gd" id="4_bpfsj"]
+[ext_resource type="PackedScene" uid="uid://b0x0wwqxmrkg6" path="res://scenes/gameplay/crafting_table.tscn" id="5_pcrr1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_msnt3"]
 texture = ExtResource("1_m4luy")
@@ -388,6 +389,12 @@ tile_set = SubResource("TileSet_6263n")
 [node name="Fence" type="TileMapLayer" parent="Environment" unique_id=775276374]
 y_sort_enabled = true
 tile_set = ExtResource("4_6263n")
+
+[node name="Objects" type="Node2D" parent="." unique_id=497717663]
+y_sort_enabled = true
+
+[node name="CraftingTable" parent="Objects" unique_id=1513737323 instance=ExtResource("5_pcrr1")]
+position = Vector2(120, 72)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=2136600219]
 
