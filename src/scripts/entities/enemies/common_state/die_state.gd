@@ -8,8 +8,11 @@ func enter(enemy):
 
 
 func update(enemy, delta):
+	if enemy.velocity != Vector2.ZERO:
+		enemy.velocity = Vector2.ZERO # Khi vào trạng thái chết thì enemy không di chuyển nữa
+	
 	enemy.play_anim("die")
-
+	
 	if not is_drop_item:
 		spawn_loot(enemy) # Nếu enemy chưa spawn item thì chạy hàm spawn_loot
 
@@ -20,7 +23,7 @@ func update(enemy, delta):
 
 
 func spawn_loot(enemy) -> void:
-	if not enemy.loot_table and is_drop_item:
+	if not enemy.loot_table:
 		return # Con quái này không rơi đồ
 	
 	is_drop_item = true
