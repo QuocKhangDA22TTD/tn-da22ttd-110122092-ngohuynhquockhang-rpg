@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bu6xtnne1on2a" path="res://data/recipes/recipe_health_potion.tres" id="5_j1uoo"]
 [ext_resource type="Texture2D" uid="uid://b4ielergobe5m" path="res://assets/graphics/ui/inventory_background.png" id="6_j1uoo"]
 [ext_resource type="Texture2D" uid="uid://bfnf22uej5rq5" path="res://assets/graphics/ui/normal_slot.png" id="7_pd0bf"]
+[ext_resource type="Texture2D" uid="uid://dhh1gn6tnj3y" path="res://assets/graphics/ui/close_button.png" id="8_con7n"]
 
 [node name="CraftingUI" type="Control" unique_id=1969953454 node_paths=PackedStringArray("recipe_list_container", "ingredient_grid", "result_icon", "result_name", "craft_button")]
 layout_mode = 3
@@ -130,5 +131,17 @@ theme_override_constants/v_separation = 48
 layout_mode = 2
 size_flags_vertical = 10
 text = "Crafting"
+
+[node name="CloseButton" type="TextureButton" parent="HBoxContainer/TextureRect2" unique_id=180836536]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture_normal = ExtResource("8_con7n")
+stretch_mode = 0
 
 [connection signal="pressed" from="HBoxContainer/TextureRect2/RightColumn/CraftButton" to="." method="_on_craft_button_pressed"]
