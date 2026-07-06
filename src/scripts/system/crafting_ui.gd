@@ -58,7 +58,7 @@ func update_detail_panel():
 		
 	# Hiển thị thông tin thành phẩm
 	result_icon.texture = selected_recipe.result_item.icon
-	result_name.text = selected_recipe.name
+	result_name.text = selected_recipe.name.capitalize()
 	
 	# Hiển thị các nguyên liệu cần
 	for ing in selected_recipe.required_ingredients:
