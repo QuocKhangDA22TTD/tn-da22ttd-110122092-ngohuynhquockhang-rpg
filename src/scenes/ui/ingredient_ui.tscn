@@ -20,6 +20,7 @@ offset_bottom = 40.0
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=790962065]
 layout_mode = 2
+stretch_mode = 2
 
 [node name="AmountLabel" type="Label" parent="HBoxContainer" unique_id=87785038]
 layout_mode = 2
