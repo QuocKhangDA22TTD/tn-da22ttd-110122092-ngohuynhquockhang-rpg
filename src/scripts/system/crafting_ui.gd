@@ -81,3 +81,7 @@ func _on_craft_button_pressed():
 func _on_inventory_changed():
 	if visible:
 		update_detail_panel()
+
+
+func _on_close_button_pressed() -> void:
+	hide()
