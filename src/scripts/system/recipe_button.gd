@@ -1,8 +1,7 @@
-extends Button
+extends TextureButton
 class_name RecipeButton
 
 @export var icon_rect : TextureRect
-@export var name_label : Label
 
 var recipe_data: RecipeData
 
@@ -10,4 +9,3 @@ var recipe_data: RecipeData
 func setup(recipe: RecipeData):
 	recipe_data = recipe
 	icon_rect.texture = recipe.result_item.icon
-	name_label.text = recipe.name
