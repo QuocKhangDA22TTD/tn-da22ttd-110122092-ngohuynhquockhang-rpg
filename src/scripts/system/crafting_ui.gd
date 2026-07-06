@@ -84,4 +84,7 @@ func _on_inventory_changed():
 
 
 func _on_close_button_pressed() -> void:
+	selected_recipe = null
+	result_icon.texture = null
+	result_name.text = ""
 	hide()
