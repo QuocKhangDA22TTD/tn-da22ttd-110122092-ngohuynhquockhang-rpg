@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://b0l1d5fas4l4y"]
+
+[ext_resource type="Script" uid="uid://svijjkf5rnsq" path="res://scripts/system/main_menu.gd" id="1_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://b4ielergobe5m" path="res://assets/graphics/ui/inventory_background.png" id="1_sl1te"]
+
+[node name="MainMenu" type="Control" unique_id=1757368627]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fe2o3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1541801578]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -320.0
+offset_right = 320.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_sl1te")
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect" unique_id=2056584196]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 64.0
+offset_right = 260.0
+offset_bottom = 279.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/CenterContainer" unique_id=711891983]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Title" type="Label" parent="TextureRect/CenterContainer/VBoxContainer" unique_id=606948348]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 32
+text = "TOP-DOWN 2D PIXEL RPG ACTION"
+
+[node name="PlayButton" type="Button" parent="TextureRect/CenterContainer/VBoxContainer" unique_id=526658276]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "START"
+
+[node name="QuitButton" type="Button" parent="TextureRect/CenterContainer/VBoxContainer" unique_id=431335110]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+
+[connection signal="pressed" from="TextureRect/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="TextureRect/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

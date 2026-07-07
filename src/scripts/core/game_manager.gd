@@ -9,6 +9,8 @@ var maps_container # Tham chiếu đến container chứa map
 var entities_container # Tham chiếu đến container chứa các entity
 var items_container # Tham chiếu tới container chứa các item
 var crafting_table # Tham chiếu tới crafting table
+var ui_canvas_layer # Tham chiếu tới canvas layer chứa UI
+var pause_menu_ui # Tham chiếu tới pause menu UI
 
 func _ready():
 	pass

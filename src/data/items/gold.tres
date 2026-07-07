@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d2x8k10ap402"]
+
+[ext_resource type="Texture2D" uid="uid://dxf4oi0j2q1hk" path="res://assets/graphics/items/gold.png" id="1_56iis"]
+[ext_resource type="Script" uid="uid://da36erf37yuv" path="res://scripts/data/item_data.gd" id="1_dbni1"]
+
+[resource]
+script = ExtResource("1_dbni1")
+id = "gold"
+name = "gold"
+icon = ExtResource("1_56iis")
+max_stack = 999
+world_scale = 0.5
+type = 1
+metadata/_custom_type_script = "uid://da36erf37yuv"

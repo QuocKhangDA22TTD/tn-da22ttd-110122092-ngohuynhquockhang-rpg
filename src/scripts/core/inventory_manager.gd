@@ -77,3 +77,18 @@ func has_space_for(item: ItemData, amount: int = 1) -> bool:
 			return true
 			
 	return false
+
+
+# Thêm gold vào kho đồ
+func add_gold(amount: int) -> void:
+	gold += amount
+	emit_signal("inventory_changed")
+
+
+# Xóa gold từ kho đồ
+func remove_gold(amount: int) -> bool:
+	if gold >= amount:
+		gold -= amount
+		emit_signal("inventory_changed")
+		return true
+	return false

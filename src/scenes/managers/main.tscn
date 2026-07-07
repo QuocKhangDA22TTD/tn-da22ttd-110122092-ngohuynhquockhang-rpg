@@ -1,16 +1,9 @@
 [gd_scene format=3 uid="uid://bptsnoc6m8hva"]
 
 [ext_resource type="Script" uid="uid://dx76qsv8hh17s" path="res://scripts/core/game.gd" id="1_d0pqj"]
-[ext_resource type="PackedScene" uid="uid://drw027ttr8hpk" path="res://scenes/maps/town.tscn" id="2_385x3"]
+[ext_resource type="Script" uid="uid://c7vja3318hl2r" path="res://scripts/system/main.gd" id="1_p4gr0"]
 [ext_resource type="PackedScene" uid="uid://cpitsgqfub6hn" path="res://scenes/gameplay/player.tscn" id="3_p4gr0"]
-[ext_resource type="PackedScene" uid="uid://bugdyovlrdlon" path="res://scenes/managers/enemy_spawner.tscn" id="4_t7531"]
-[ext_resource type="Resource" uid="uid://inkwqgchp1nu" path="res://data/entities/enemies/skeleton.tres" id="5_m2s5l"]
-[ext_resource type="PackedScene" uid="uid://cfvxrdmvfuaw" path="res://scenes/ui/item_drop.tscn" id="6_x4kv1"]
-[ext_resource type="Resource" uid="uid://2oxjf8hoxd7c" path="res://data/items/sword.tres" id="7_jinc1"]
-[ext_resource type="Resource" uid="uid://dgs0vm8i0bun0" path="res://data/items/staff_of_fire.tres" id="8_h5xkw"]
-[ext_resource type="Resource" uid="uid://bbi5qug4kumuc" path="res://data/items/bow.tres" id="9_txc31"]
-[ext_resource type="Resource" uid="uid://bqys23112x6ok" path="res://data/items/health_potion.tres" id="10_6j18q"]
-[ext_resource type="Resource" uid="uid://dw3fpwhl5goux" path="res://data/items/mana_potion.tres" id="11_htcj5"]
+[ext_resource type="PackedScene" uid="uid://b12hvvwiae04k" path="res://scenes/maps/home_base.tscn" id="3_qj640"]
 [ext_resource type="Script" uid="uid://cnifokcbmtnh2" path="res://scripts/entities/camera_2d.gd" id="12_7jon8"]
 [ext_resource type="PackedScene" uid="uid://bpagpsmqqturb" path="res://scenes/ui/hud.tscn" id="13_4v8sg"]
 [ext_resource type="PackedScene" uid="uid://csoqgl1rfxiss" path="res://scenes/ui/hotbar_ui.tscn" id="14_popqo"]
@@ -19,11 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://lg1p333aau1e" path="res://scenes/ui/clock_ui.tscn" id="17_qr7lv"]
 [ext_resource type="PackedScene" uid="uid://cnpltbfwmeljg" path="res://scenes/ui/crafting_ui.tscn" id="18_h5exd"]
 [ext_resource type="Script" uid="uid://csdvij8aklsaf" path="res://scripts/core/input_handler.gd" id="19_o7u6v"]
+[ext_resource type="PackedScene" uid="uid://dcssy5cm0er34" path="res://scenes/ui/pause_menu.tscn" id="20_t7531"]
 [ext_resource type="PackedScene" uid="uid://c5dhf5vimsifg" path="res://scenes/managers/day_night_cycle.tscn" id="20_ttvf3"]
+[ext_resource type="PackedScene" uid="uid://b0l1d5fas4l4y" path="res://scenes/ui/main_menu.tscn" id="21_385x3"]
 
-[node name="Main" type="Node2D" unique_id=2114139567]
+[node name="Main" type="Node2D" unique_id=2114139567 node_paths=PackedStringArray("main_menu", "game_scene")]
+script = ExtResource("1_p4gr0")
+main_menu = NodePath("MainMenuLayer/MainMenu")
+game_scene = NodePath("Game")
 
-[node name="Game" type="Node2D" parent="." unique_id=1771080779 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui", "shop_ui", "maps_container", "entities_container", "items_container", "crafting_table")]
+[node name="Game" type="Node2D" parent="." unique_id=1771080779 node_paths=PackedStringArray("enemies_container", "input_handler", "hotbar_ui", "shop_ui", "maps_container", "entities_container", "items_container", "crafting_table", "ui_canvas_layer", "pause_menu_ui")]
 script = ExtResource("1_d0pqj")
 enemies_container = NodePath("World/Entities/Enemies")
 input_handler = NodePath("Systems/InputHandler")
@@ -33,6 +31,8 @@ maps_container = NodePath("World/Maps")
 entities_container = NodePath("World/Entities")
 items_container = NodePath("World/Items")
 crafting_table = NodePath("UI/CraftingUI")
+ui_canvas_layer = NodePath("UI")
+pause_menu_ui = NodePath("UI/PauseMenu")
 
 [node name="World" type="Node2D" parent="Game" unique_id=193438284]
 y_sort_enabled = true
@@ -40,53 +40,18 @@ y_sort_enabled = true
 [node name="Maps" type="Node2D" parent="Game/World" unique_id=83877726]
 y_sort_enabled = true
 
-[node name="Town" parent="Game/World/Maps" unique_id=1019395140 instance=ExtResource("2_385x3")]
+[node name="HomeBase" parent="Game/World/Maps" unique_id=1019395140 instance=ExtResource("3_qj640")]
 
 [node name="Entities" type="Node2D" parent="Game/World" unique_id=724745038]
 y_sort_enabled = true
 
 [node name="Player" parent="Game/World/Entities" unique_id=955801447 instance=ExtResource("3_p4gr0")]
-position = Vector2(421, 342)
+position = Vector2(88, 121)
 
 [node name="Enemies" type="Node2D" parent="Game/World/Entities" unique_id=46826747]
 y_sort_enabled = true
 
-[node name="EnemySpawner" parent="Game/World/Entities" unique_id=166305411 instance=ExtResource("4_t7531")]
-position = Vector2(470, 255)
-enemy_data = ExtResource("5_m2s5l")
-
-[node name="EnemySpawner2" parent="Game/World/Entities" unique_id=48805097 instance=ExtResource("4_t7531")]
-position = Vector2(470, 255)
-
 [node name="Items" type="Node2D" parent="Game/World" unique_id=1685418430]
-
-[node name="ItemDrop" parent="Game/World/Items" unique_id=1534783335 instance=ExtResource("6_x4kv1")]
-position = Vector2(262, 388)
-item = ExtResource("7_jinc1")
-
-[node name="ItemDrop2" parent="Game/World/Items" unique_id=1548748483 instance=ExtResource("6_x4kv1")]
-position = Vector2(363, 389)
-item = ExtResource("8_h5xkw")
-
-[node name="ItemDrop3" parent="Game/World/Items" unique_id=1615172490 instance=ExtResource("6_x4kv1")]
-position = Vector2(456, 388)
-item = ExtResource("9_txc31")
-
-[node name="ItemDrop4" parent="Game/World/Items" unique_id=625865559 instance=ExtResource("6_x4kv1")]
-position = Vector2(363, 471)
-item = ExtResource("10_6j18q")
-
-[node name="ItemDrop5" parent="Game/World/Items" unique_id=1265507454 instance=ExtResource("6_x4kv1")]
-position = Vector2(461, 472)
-item = ExtResource("10_6j18q")
-
-[node name="ItemDrop6" parent="Game/World/Items" unique_id=272055226 instance=ExtResource("6_x4kv1")]
-position = Vector2(256, 469)
-item = ExtResource("11_htcj5")
-
-[node name="ItemDrop7" parent="Game/World/Items" unique_id=301604292 instance=ExtResource("6_x4kv1")]
-position = Vector2(254, 553)
-item = ExtResource("10_6j18q")
 
 [node name="Camera2D" type="Camera2D" parent="Game" unique_id=293291314]
 zoom = Vector2(2, 2)
@@ -113,9 +78,16 @@ grow_vertical = 1
 
 [node name="CraftingUI" parent="Game/UI" unique_id=1969953454 instance=ExtResource("18_h5exd")]
 
+[node name="PauseMenu" parent="Game/UI" unique_id=355980596 instance=ExtResource("20_t7531")]
+
 [node name="Systems" type="Node2D" parent="Game" unique_id=2089770179]
 
 [node name="InputHandler" type="Node2D" parent="Game/Systems" unique_id=44333829]
 script = ExtResource("19_o7u6v")
 
 [node name="DayNightCycle" parent="Game/Systems" unique_id=295554606 instance=ExtResource("20_ttvf3")]
+
+[node name="MainMenuLayer" type="CanvasLayer" parent="." unique_id=1309874762]
+layer = 2
+
+[node name="MainMenu" parent="MainMenuLayer" unique_id=1757368627 instance=ExtResource("21_385x3")]

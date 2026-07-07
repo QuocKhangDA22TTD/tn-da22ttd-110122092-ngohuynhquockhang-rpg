@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://ddub61rgcl8df"]
+
+[ext_resource type="Script" uid="uid://flnaxc75234i" path="res://scripts/data/ingredient.gd" id="1_8ryg8"]
+[ext_resource type="Resource" uid="uid://divvcjjnkpfn8" path="res://data/items/herbal.tres" id="2_4mb1q"]
+[ext_resource type="Script" uid="uid://c7p4qnqrs502p" path="res://scripts/data/recipe_data.gd" id="2_dyqc0"]
+[ext_resource type="Resource" uid="uid://bxih8ev2krpiu" path="res://data/items/mana_crystal.tres" id="2_rqafe"]
+[ext_resource type="Resource" uid="uid://b1k3s4s68chga" path="res://data/items/slime_gel.tres" id="4_invyw"]
+[ext_resource type="Resource" uid="uid://dw3fpwhl5goux" path="res://data/items/mana_potion.tres" id="4_kh8dp"]
+
+[sub_resource type="Resource" id="Resource_01yd8"]
+script = ExtResource("1_8ryg8")
+item = ExtResource("4_invyw")
+amount = 16
+metadata/_custom_type_script = "uid://flnaxc75234i"
+
+[sub_resource type="Resource" id="Resource_fvqy3"]
+script = ExtResource("1_8ryg8")
+item = ExtResource("2_4mb1q")
+amount = 8
+metadata/_custom_type_script = "uid://flnaxc75234i"
+
+[sub_resource type="Resource" id="Resource_4mb1q"]
+script = ExtResource("1_8ryg8")
+item = ExtResource("2_rqafe")
+amount = 4
+metadata/_custom_type_script = "uid://flnaxc75234i"
+
+[resource]
+script = ExtResource("2_dyqc0")
+id = "recipe_mana_potion"
+name = "recipe mana potion"
+required_ingredients = Array[ExtResource("1_8ryg8")]([SubResource("Resource_01yd8"), SubResource("Resource_fvqy3"), SubResource("Resource_4mb1q")])
+result_item = ExtResource("4_kh8dp")
+metadata/_custom_type_script = "uid://c7p4qnqrs502p"

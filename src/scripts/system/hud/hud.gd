@@ -5,11 +5,15 @@ extends Control
 @export var stamina_bar: TextureProgressBar
 
 var player_stats: CharacterStats = null # Biến để lưu trữ tham chiếu đến CharacterStats của người chơi
+var gold_label: Label = null # Biến để lưu trữ tham chiếu đến Label hiển thị gold
 
 
 func _ready() -> void:
 	# Lấy tham chiếu đến CharacterStats của người chơi từ GameManager
 	player_stats = GameManager.player.stats if GameManager.player else null
+	
+	# Lấy tham chiếu đến Label hiển thị gold
+	gold_label = $HBoxContainer/Amount
 	
 	if player_stats:
 
@@ -25,11 +29,19 @@ func _ready() -> void:
 		stamina_bar.max_value = player_stats.max_stamina
 		stamina_bar.value = player_stats.current_stamina
 
+	# Khởi tạo hiển thị gold
+	if gold_label:
+		gold_label.text = str(InventoryManager.gold)
+
 	if player_stats:
 		# Kết nối tín hiệu changed của CharacterStats để cập các chỉ số và thay đổi giao diện
 		player_stats.changed.connect(_on_health_changed)
 		player_stats.changed.connect(_on_mana_changed)
 		player_stats.changed.connect(_on_stamina_changed)
+	
+	# Kết nối tín hiệu thay đổi inventory để cập nhật gold
+	if InventoryManager:
+		InventoryManager.inventory_changed.connect(_on_gold_changed)
 
 
 func _on_health_changed() -> void:
@@ -45,3 +57,8 @@ func _on_mana_changed() -> void:
 func _on_stamina_changed() -> void:
 	if player_stats:
 		stamina_bar.value = player_stats.current_stamina # Cập nhật giá trị của thanh stamina
+
+
+func _on_gold_changed() -> void:
+	if gold_label:
+		gold_label.text = str(InventoryManager.gold) # Cập nhật hiển thị gold khi số lượng thay đổi

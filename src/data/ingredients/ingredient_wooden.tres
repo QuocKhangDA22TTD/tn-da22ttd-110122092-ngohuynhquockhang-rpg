@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ingredient" format=3 uid="uid://150hfw2c87fm"]
+
+[ext_resource type="Texture2D" uid="uid://4307v0fwr83r" path="res://assets/graphics/items/wooden.png" id="1_ryngc"]
+[ext_resource type="Script" uid="uid://da36erf37yuv" path="res://scripts/data/item_data.gd" id="2_j1aw7"]
+[ext_resource type="Script" uid="uid://flnaxc75234i" path="res://scripts/data/ingredient.gd" id="2_k6alm"]
+
+[sub_resource type="Resource" id="Resource_ryngc"]
+script = ExtResource("2_j1aw7")
+id = "wooden"
+name = "wooden"
+icon = ExtResource("1_ryngc")
+max_stack = 64
+type = 1
+metadata/_custom_type_script = "uid://da36erf37yuv"
+
+[resource]
+script = ExtResource("2_k6alm")
+item = SubResource("Resource_ryngc")
+amount = 128
+metadata/_custom_type_script = "uid://flnaxc75234i"

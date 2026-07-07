@@ -8,6 +8,8 @@ extends Node2D
 @export var entities_container: Node2D # Tham chiếu đến container chứa các entity
 @export var items_container: Node2D # Tham chiếu tới container chứa các item
 @export var crafting_table: Control # Tham chiếu tới crafting table
+@export var ui_canvas_layer: CanvasLayer # Tham chiếu tới canvas layer chứa UI
+@export var pause_menu_ui: Control # Tham chiếu tới pause menu UI
 
 # Hàm sẽ được gọi 1 lần khi scene đã load xong tất cả node.
 func _enter_tree() -> void:
@@ -19,3 +21,6 @@ func _enter_tree() -> void:
 	GameManager.entities_container = entities_container # gán container chứa entity cho biến entities_container của GameManager
 	GameManager.items_container = items_container # gán container chứa item cho biến items_container của GameManager
 	GameManager.crafting_table = crafting_table # gán crafting table cho biến crafting_table của GameManager
+	GameManager.ui_canvas_layer = ui_canvas_layer # gán canvas layer chứa UI cho biến ui_canvas_layer của GameManager
+	GameManager.pause_menu_ui = pause_menu_ui # gán pause menu UI cho biến pause_menu_ui của GameManager
+	

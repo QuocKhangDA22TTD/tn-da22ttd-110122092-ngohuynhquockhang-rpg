@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootTableData" format=3 uid="uid://c3oak206s7b4"]
+
+[ext_resource type="Script" uid="uid://bgc5kc8ht7mcn" path="res://scripts/data/loot_item_data.gd" id="1_2c83m"]
+[ext_resource type="Script" uid="uid://c2w5jdaxgh2bc" path="res://scripts/data/loot_table_data.gd" id="2_eloun"]
+[ext_resource type="Resource" uid="uid://cy6nm744ehs8t" path="res://data/loot_items/gold_loot.tres" id="3_klmnp"]
+
+[resource]
+script = ExtResource("2_eloun")
+loot_items = Array[ExtResource("1_2c83m")]([ExtResource("3_klmnp")])
+metadata/_custom_type_script = "uid://c2w5jdaxgh2bc"

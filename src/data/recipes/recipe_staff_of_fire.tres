@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://b4g3pt574atcs"]
+
+[ext_resource type="Script" uid="uid://flnaxc75234i" path="res://scripts/data/ingredient.gd" id="1_8ryg8"]
+[ext_resource type="Texture2D" uid="uid://4307v0fwr83r" path="res://assets/graphics/items/wooden.png" id="2_4jvww"]
+[ext_resource type="Script" uid="uid://c7p4qnqrs502p" path="res://scripts/data/recipe_data.gd" id="2_dyqc0"]
+[ext_resource type="Script" uid="uid://da36erf37yuv" path="res://scripts/data/item_data.gd" id="3_c6cmc"]
+[ext_resource type="Resource" uid="uid://bxih8ev2krpiu" path="res://data/items/mana_crystal.tres" id="4_c6cmc"]
+[ext_resource type="Resource" uid="uid://dgs0vm8i0bun0" path="res://data/items/staff_of_fire.tres" id="4_kh8dp"]
+
+[sub_resource type="Resource" id="Resource_ryngc"]
+script = ExtResource("3_c6cmc")
+id = "wooden"
+name = "wooden"
+icon = ExtResource("2_4jvww")
+max_stack = 64
+type = 1
+metadata/_custom_type_script = "uid://da36erf37yuv"
+
+[sub_resource type="Resource" id="Resource_0a834"]
+script = ExtResource("1_8ryg8")
+item = SubResource("Resource_ryngc")
+amount = 128
+metadata/_custom_type_script = "uid://flnaxc75234i"
+
+[sub_resource type="Resource" id="Resource_ue3mh"]
+script = ExtResource("1_8ryg8")
+item = ExtResource("4_c6cmc")
+amount = 48
+metadata/_custom_type_script = "uid://flnaxc75234i"
+
+[resource]
+script = ExtResource("2_dyqc0")
+id = "recipe_staff_of_fire"
+name = "recipe staff of fire"
+required_ingredients = Array[ExtResource("1_8ryg8")]([SubResource("Resource_0a834"), SubResource("Resource_ue3mh")])
+result_item = ExtResource("4_kh8dp")
+metadata/_custom_type_script = "uid://c7p4qnqrs502p"

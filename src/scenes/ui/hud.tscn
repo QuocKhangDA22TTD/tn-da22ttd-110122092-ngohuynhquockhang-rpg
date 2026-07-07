@@ -1,15 +1,16 @@
 [gd_scene format=3 uid="uid://bpagpsmqqturb"]
 
 [ext_resource type="Script" uid="uid://0p544xr4gfcr" path="res://scripts/system/hud/hud.gd" id="1_8qguk"]
-[ext_resource type="Texture2D" uid="uid://8rxv02yhic67" path="res://assets/ui/hud_health_bar_under.png" id="2_8qguk"]
-[ext_resource type="Texture2D" uid="uid://cqcoufhy0ok8w" path="res://assets/ui/hud_health_bar_over.png" id="3_136eg"]
-[ext_resource type="Texture2D" uid="uid://c5f1dyfdw5si3" path="res://assets/ui/hud_health_bar_progress.png" id="4_oj5la"]
-[ext_resource type="Texture2D" uid="uid://bq8qje6yj36ce" path="res://assets/ui/hud_mana_bar_under.png" id="5_gss2c"]
-[ext_resource type="Texture2D" uid="uid://5w5w02uriolh" path="res://assets/ui/hud_mana_bar_over.png" id="6_h022r"]
-[ext_resource type="Texture2D" uid="uid://dk1dyaraeeesu" path="res://assets/ui/hud_mana_bar_progress.png" id="7_4jqwt"]
-[ext_resource type="Texture2D" uid="uid://djfaid1y5ang6" path="res://assets/ui/hud_stamina_bar_under.png" id="8_kicr4"]
-[ext_resource type="Texture2D" uid="uid://dmsswypbl66me" path="res://assets/ui/hud_stamina_bar_over.png" id="9_mj13f"]
-[ext_resource type="Texture2D" uid="uid://btyxkxt4mx6c1" path="res://assets/ui/hud_stamina_bar_progress.png" id="10_0h1do"]
+[ext_resource type="Texture2D" uid="uid://8rxv02yhic67" path="res://assets/graphics/ui/hud_health_bar_under.png" id="2_8qguk"]
+[ext_resource type="Texture2D" uid="uid://cqcoufhy0ok8w" path="res://assets/graphics/ui/hud_health_bar_over.png" id="3_136eg"]
+[ext_resource type="Texture2D" uid="uid://c5f1dyfdw5si3" path="res://assets/graphics/ui/hud_health_bar_progress.png" id="4_oj5la"]
+[ext_resource type="Texture2D" uid="uid://bq8qje6yj36ce" path="res://assets/graphics/ui/hud_mana_bar_under.png" id="5_gss2c"]
+[ext_resource type="Texture2D" uid="uid://5w5w02uriolh" path="res://assets/graphics/ui/hud_mana_bar_over.png" id="6_h022r"]
+[ext_resource type="Texture2D" uid="uid://dk1dyaraeeesu" path="res://assets/graphics/ui/hud_mana_bar_progress.png" id="7_4jqwt"]
+[ext_resource type="Texture2D" uid="uid://djfaid1y5ang6" path="res://assets/graphics/ui/hud_stamina_bar_under.png" id="8_kicr4"]
+[ext_resource type="Texture2D" uid="uid://dmsswypbl66me" path="res://assets/graphics/ui/hud_stamina_bar_over.png" id="9_mj13f"]
+[ext_resource type="Texture2D" uid="uid://btyxkxt4mx6c1" path="res://assets/graphics/ui/hud_stamina_bar_progress.png" id="10_0h1do"]
+[ext_resource type="Texture2D" uid="uid://dxf4oi0j2q1hk" path="res://assets/graphics/items/gold.png" id="11_mj13f"]
 
 [node name="HUD" type="Control" unique_id=136366360 node_paths=PackedStringArray("hp_bar", "mana_bar", "stamina_bar")]
 layout_mode = 3
@@ -49,3 +50,28 @@ texture_under = ExtResource("8_kicr4")
 texture_over = ExtResource("9_mj13f")
 texture_progress = ExtResource("10_0h1do")
 texture_progress_offset = Vector2(23, 7)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1187363728]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -74.0
+offset_top = 48.0
+offset_bottom = 96.0
+grow_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="Amount" type="Label" parent="HBoxContainer" unique_id=350380449]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93333334, 0.93333334, 0.93333334, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="CoinIcon" type="TextureRect" parent="HBoxContainer" unique_id=1700748230]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("11_mj13f")

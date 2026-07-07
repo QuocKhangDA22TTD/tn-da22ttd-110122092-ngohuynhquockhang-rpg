@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Ingredient" format=3 uid="uid://cjhs8gxqimtvj"]
+[gd_resource type="Resource" script_class="Ingredient" format=3 uid="uid://dfjl1wl187kan"]
 
-[ext_resource type="Resource" uid="uid://divvcjjnkpfn8" path="res://data/items/herbal.tres" id="1_qioxy"]
+[ext_resource type="Resource" uid="uid://bxih8ev2krpiu" path="res://data/items/mana_crystal.tres" id="1_qioxy"]
 [ext_resource type="Script" uid="uid://flnaxc75234i" path="res://scripts/data/ingredient.gd" id="2_k6alm"]
 
 [resource]

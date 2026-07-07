@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://inkwqgchp1nu"]
 
 [ext_resource type="AnimationLibrary" uid="uid://dx4ce04lbwgtl" path="res://data/animaitons/skeleton.res" id="1_6s7hy"]
+[ext_resource type="Resource" uid="uid://c3oak206s7b4" path="res://data/loot_tables/skeleton_loot.tres" id="1_skeleton_loot"]
 [ext_resource type="Script" uid="uid://caw6e3cxvhnos" path="res://scripts/data/enemy_data.gd" id="1_v7mla"]
 [ext_resource type="Script" uid="uid://b3st7tlisfq5d" path="res://scripts/entities/enemies/base/enemy_state.gd" id="2_q7t6q"]
 [ext_resource type="Script" uid="uid://dwt32hvdxfg87" path="res://scripts/entities/enemies/common_state/idle_state.gd" id="4_xxbk1"]
@@ -40,4 +41,5 @@ patrol_radius = 300.0
 chase_distance = 150.0
 animation_library = ExtResource("1_6s7hy")
 states = Array[ExtResource("2_q7t6q")]([SubResource("Resource_32ufn"), SubResource("Resource_bmmc8"), SubResource("Resource_su5wc"), SubResource("Resource_qvn80"), SubResource("Resource_4d5sr")])
+loot_table_resource = ExtResource("1_skeleton_loot")
 metadata/_custom_type_script = "uid://caw6e3cxvhnos"

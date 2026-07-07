@@ -6,8 +6,12 @@
 [ext_resource type="Script" uid="uid://c7p4qnqrs502p" path="res://scripts/data/recipe_data.gd" id="4_wt5wn"]
 [ext_resource type="Resource" uid="uid://bu6xtnne1on2a" path="res://data/recipes/recipe_health_potion.tres" id="5_j1uoo"]
 [ext_resource type="Texture2D" uid="uid://b4ielergobe5m" path="res://assets/graphics/ui/inventory_background.png" id="6_j1uoo"]
+[ext_resource type="Resource" uid="uid://bmjv1w4gx346v" path="res://data/recipes/recipe_bow.tres" id="6_l723f"]
+[ext_resource type="Resource" uid="uid://ud6oeeur1fev" path="res://data/recipes/recipe_sword.tres" id="7_omcbl"]
 [ext_resource type="Texture2D" uid="uid://bfnf22uej5rq5" path="res://assets/graphics/ui/normal_slot.png" id="7_pd0bf"]
+[ext_resource type="Resource" uid="uid://b4g3pt574atcs" path="res://data/recipes/recipe_staff_of_fire.tres" id="8_16hh0"]
 [ext_resource type="Texture2D" uid="uid://dhh1gn6tnj3y" path="res://assets/graphics/ui/close_button.png" id="8_con7n"]
+[ext_resource type="Resource" uid="uid://ddub61rgcl8df" path="res://data/recipes/recipe_mana_potion.tres" id="9_s6vg2"]
 
 [node name="CraftingUI" type="Control" unique_id=1969953454 node_paths=PackedStringArray("recipe_list_container", "ingredient_grid", "result_icon", "result_name", "craft_button")]
 layout_mode = 3
@@ -24,7 +28,7 @@ ingredient_grid = NodePath("HBoxContainer/TextureRect2/RightColumn/IngredientGri
 result_icon = NodePath("HBoxContainer/TextureRect2/RightColumn/ResultInfo/SlotIcon/ResultIcon")
 result_name = NodePath("HBoxContainer/TextureRect2/RightColumn/ResultInfo/ResultName")
 craft_button = NodePath("HBoxContainer/TextureRect2/RightColumn/CraftButton")
-all_recipes = Array[ExtResource("4_wt5wn")]([ExtResource("5_j1uoo"), ExtResource("5_j1uoo"), ExtResource("5_j1uoo"), ExtResource("5_j1uoo"), ExtResource("5_j1uoo"), ExtResource("5_j1uoo")])
+all_recipes = Array[ExtResource("4_wt5wn")]([ExtResource("5_j1uoo"), ExtResource("6_l723f"), ExtResource("7_omcbl"), ExtResource("8_16hh0"), ExtResource("9_s6vg2")])
 
 [node name="MainPanel" type="PanelContainer" parent="." unique_id=1403543916]
 layout_mode = 1
@@ -126,6 +130,7 @@ theme_override_font_sizes/font_size = 16
 layout_mode = 2
 theme_override_constants/h_separation = 128
 theme_override_constants/v_separation = 48
+columns = 2
 
 [node name="CraftButton" type="Button" parent="HBoxContainer/TextureRect2/RightColumn" unique_id=119731431]
 layout_mode = 2
